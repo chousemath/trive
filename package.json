@@ -1,12 +1,12 @@
 {
   "name": "trivefunc",
-  "version": "0.0.5",
-  "description": "",
+  "version": "1.0.1",
+  "description": "A library of pure functions for The Trive mobile application.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Joseph Sungpil Choi",
   "license": "ISC",
   "devDependencies": {
     "assert": "^1.4.1",
