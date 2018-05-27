@@ -28,6 +28,7 @@ const regexCarNumber: RegExp = /^[0-9][0-9][^a-zA-Z0-9][0-9][0-9][0-9][0-9]+$/;
 export const isValidCarNumber = (carNumber: string): boolean => regexCarNumber.test(carNumber) && carNumber.length === 7;
 
 export const brandKeyToName = (brandKey: string): string => (brandKey in Common.Brand) ? Common.Brand[brandKey].name : brandKey;
+export const transmissionKeyToName = (transmissionKey: string): string => (transmissionKey in Common.Transmission) ? Common.Transmission[transmissionKey].name : transmissionKey;
 
 const transformNumericString = (original: string): string => {
   const limit: number = original.length - 1;

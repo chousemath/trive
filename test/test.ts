@@ -81,6 +81,14 @@ M.describe('Trive', () => {
       A.equal(T.brandKeyToName('not-a-real-brand'), 'not-a-real-brand');
     });
   });
+  M.describe('#transmissionKeyToName', () => {
+    M.it('should correctly retrieve the official name of a transmission type by its key', () => {
+      A.equal(T.transmissionKeyToName('automatic_'), '자동');
+      A.equal(T.transmissionKeyToName('manual_'), '수동');
+      A.equal(T.transmissionKeyToName(''), '');
+      A.equal(T.transmissionKeyToName('not-a-real-transmission'), 'not-a-real-transmission');
+    });
+  });
   M.describe('#transformNumber', () => {
     M.it('should correctly format a number or number string to a number string with commas', () => {
       A.equal(T.transformNumber('0'), '0');

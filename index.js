@@ -26,6 +26,7 @@ exports.assembleDateString = function (year, month, day) {
 var regexCarNumber = /^[0-9][0-9][^a-zA-Z0-9][0-9][0-9][0-9][0-9]+$/;
 exports.isValidCarNumber = function (carNumber) { return regexCarNumber.test(carNumber) && carNumber.length === 7; };
 exports.brandKeyToName = function (brandKey) { return (brandKey in common_1.Common.Brand) ? common_1.Common.Brand[brandKey].name : brandKey; };
+exports.transmissionKeyToName = function (transmissionKey) { return (transmissionKey in common_1.Common.Transmission) ? common_1.Common.Transmission[transmissionKey].name : transmissionKey; };
 var transformNumericString = function (original) {
     var limit = original.length - 1;
     var reversedWithCommas = mapIndexed(function (val, idx) {

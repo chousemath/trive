@@ -26,3 +26,21 @@ $ ./compile.sh
 # or simply...
 $ npm run-script compile
 ```
+
+### Documentation
+
+* [assembleDateString](#assembledatestring)
+
+
+#### **assembleDateString()**
+
+```bash
+Arguments: year: number | string, month: number | string, day: number | string
+Return Value: string
+```
+
+```javascript
+// Example:
+assembleDateString(1990, 7, 7)
+// '19900707'
+```
