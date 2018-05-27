@@ -32,15 +32,11 @@ $ npm run-script compile
 * [assembleDateString](#assembledatestring)
 
 
-#### **assembleDateString()**
-
-```bash
-Arguments: year: number | string, month: number | string, day: number | string
-Return Value: string
-```
+#### **assembleDateString(number | string, number | string, number | string): string**
 
 ```javascript
-// Example:
+// Arguments: year: number | string, month: number | string, day: number | string
+// Return Value: string
 assembleDateString(1990, 7, 7)
 // '19900707'
 ```
