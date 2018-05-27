@@ -1,0 +1,34 @@
+export interface Estimate {
+  key: string;
+  timeDue: Date;
+  timeCreate: Date;
+  timeUpdate: Date;
+  vehicleModel: string;
+  financial: string;
+  customer: string;
+  dealer: string;
+  price: number;
+  deptCost: number;
+  active: string;
+  costTotal: number;
+  costFirst: number;
+  tax: number;
+  deposit: number;
+  advance: number;
+  residual: number;
+  payback: number;
+  monthly: number;
+  interest: number;
+  discount: number;
+  discounts: any;
+  option: number;
+  options: any;
+  gift: string;
+  comment: string;
+  period: number;
+  additionalTotal: number;
+  vehicleName: string;
+  todayUpdateCount: number;
+  logs: any;
+  invisibleInGraph: boolean;
+}
