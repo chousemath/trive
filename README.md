@@ -30,13 +30,83 @@ $ npm run-script compile
 ### Documentation
 
 * [assembleDateString](#assembledatestring)
+* [brandKeyToName](#brandkeytoname)
+* [isValidCarNumber](#isvalidcarnumber)
+* [transformNumber](#transformnumber)
+* [transformPrice](#transformprice)
+* [transmissionKeyToName](#transmissionkeytoname)
 
-
-#### **assembleDateString(number | string, number | string, number | string): string**
+#### **assembleDateString**
 
 ```javascript
 // Arguments: year: number | string, month: number | string, day: number | string
 // Return Value: string
 assembleDateString(1990, 7, 7)
 // '19900707'
+assembleDateString('1990', '7', '7')
+// '19900707'
+```
+
+#### **brandKeyToName**
+
+```javascript
+// Arguments: brandKey: string
+// Return Value: string
+brandKeyToName('kia')
+// '기아'
+```
+
+
+#### **isValidCarNumber**
+
+```javascript
+// Arguments: carNumber: string
+// Return Value: boolean
+isValidCarNumber('11헐1111')
+// true
+isValidCarNumber('1191111')
+// false
+```
+
+#### **transformNumber**
+
+```javascript
+// Arguments: original: number | string
+// Return Value: string
+transformNumber('9999999')
+// '9,999,999'
+transformNumber(1000)
+// '1,000'
+```
+
+#### **transformPrice**
+
+```javascript
+// Arguments: price: number
+// Return Value: string
+transformPrice(0)
+// '0원'
+transformPrice(990)
+// '990원'
+transformPrice(1120)
+// '1,120원'
+transformPrice(19120)
+// '1만 9,120원'
+transformPrice(129120)
+// '12만 9,120원'
+transformPrice(99129120)
+// '9,912만 9,120원'
+transformPrice(699129120)
+// '6억 9,912만 9,120원'
+transformPrice(55699129120)
+// '556억 9,912만 9,120원'
+```
+
+#### **transmissionKeyToName**
+
+```javascript
+// Arguments: transmissionKey: string
+// Return Value: string
+transmissionKeyToName('automatic_')
+// '자동'
 ```
