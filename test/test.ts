@@ -172,13 +172,13 @@ M.describe('Trive', () => {
   M.describe('#filterServicesBidFailure', () => {
     M.it('should correctly filter services with the message buy label', () => {
       const input1: Array<any> = [
-        { type: 'used', status: 'failure-card' },
+        { type: 'used', status: 'failure-card', data: 'x' },
         { type: 'used', status: 'not-valid' }
       ];
       const input2: Array<any> = [
-        { type: 'used', status: 'failure-card' },
+        { type: 'used', status: 'failure-card', data: 'x' },
         { type: 'used', status: 'not-valid' },
-        { type: 'used', status: 'unselected-card' }
+        { type: 'used', status: 'unselected-card', data: 'x' }
       ];
       const output1: Array<any> = [{ type: 'used', status: 'failure-card' }];
       const output2: Array<any> = [

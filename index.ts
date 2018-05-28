@@ -79,7 +79,7 @@ const statusesServiceBidFailure: Array<string> = ['failure-card', 'unselected-ca
 const filterServiceBidFailure = (service: Service): boolean => {
   const correctType: boolean = 'type' in service && service.type === 'used';
   const correctStatus: boolean = 'status' in service && R.find((x) => x === service.status, statusesServiceBidFailure);
-  return correctType && correctStatus
+  return correctType && correctStatus && 'data' in service;
 };
 export const filterServicesBidFailure = (services: Array<Service>): Array<Service> => R.filter(filterServiceBidFailure, services);
 
@@ -100,3 +100,11 @@ const filterServiceMessageService = (service: Service): boolean => {
   return (correctType1 && noDataTag) || correctType2;
 };
 export const filterServicesMessageService = (services: Array<Service>): Array<Service> => R.filter(filterServiceMessageService, services);
+
+// const tempImageArray = _.clone(this.vehicleImages); // defensive copying
+// _.remove(tempImageArray, i => i === selectedImageUrl); // mutate tempImageArray
+// const organizedImageArray = _.concat(selectedImageUrl, tempImageArray);
+
+// export const reorganizeImages = (selectedImage: string, imageArray: Array<string>): Array<string> => {
+
+// };

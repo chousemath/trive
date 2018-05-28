@@ -77,7 +77,7 @@ var statusesServiceBidFailure = ['failure-card', 'unselected-card'];
 var filterServiceBidFailure = function (service) {
     var correctType = 'type' in service && service.type === 'used';
     var correctStatus = 'status' in service && R.find(function (x) { return x === service.status; }, statusesServiceBidFailure);
-    return correctType && correctStatus;
+    return correctType && correctStatus && 'data' in service;
 };
 exports.filterServicesBidFailure = function (services) { return R.filter(filterServiceBidFailure, services); };
 var statusesServiceMessageSell = ['review-accept', 'review-reject', 'booking-agent'];
@@ -96,3 +96,8 @@ var filterServiceMessageService = function (service) {
     return (correctType1 && noDataTag) || correctType2;
 };
 exports.filterServicesMessageService = function (services) { return R.filter(filterServiceMessageService, services); };
+// const tempImageArray = _.clone(this.vehicleImages); // defensive copying
+// _.remove(tempImageArray, i => i === selectedImageUrl); // mutate tempImageArray
+// const organizedImageArray = _.concat(selectedImageUrl, tempImageArray);
+// export const reorganizeImages = (selectedImage: string, imageArray: Array<string>): Array<string> => {
+// };

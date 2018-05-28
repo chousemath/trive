@@ -172,13 +172,13 @@ M.describe('Trive', function () {
     M.describe('#filterServicesBidFailure', function () {
         M.it('should correctly filter services with the message buy label', function () {
             var input1 = [
-                { type: 'used', status: 'failure-card' },
+                { type: 'used', status: 'failure-card', data: 'x' },
                 { type: 'used', status: 'not-valid' }
             ];
             var input2 = [
-                { type: 'used', status: 'failure-card' },
+                { type: 'used', status: 'failure-card', data: 'x' },
                 { type: 'used', status: 'not-valid' },
-                { type: 'used', status: 'unselected-card' }
+                { type: 'used', status: 'unselected-card', data: 'x' }
             ];
             var output1 = [{ type: 'used', status: 'failure-card' }];
             var output2 = [
