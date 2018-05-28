@@ -42,6 +42,44 @@ var Common;
         genesis: { key: 'genesis', name: '제네시스', isDomestic: true },
         trive: { key: 'trive', name: '트라이브', isDomestic: true }
     };
+    Common.BrandsFirst = [
+        { key: 'hyundai', name: '현대', isDomestic: true },
+        { key: 'genesis', name: '제네시스', isDomestic: true },
+        { key: 'kia', name: '기아', isDomestic: true },
+        { key: 'renaultsamsung', name: '르노삼성', isDomestic: true },
+        { key: 'renault', name: '르노', isDomestic: true },
+        { key: 'chevrolet', name: '쉐보레', isDomestic: true },
+        { key: 'ssangyong', name: '쌍용', isDomestic: true }
+    ];
+    Common.BrandsSecond = [
+        { key: 'bmw', name: 'BMW', isDomestic: false },
+        { key: 'benz', name: '벤츠', isDomestic: false },
+        { key: 'audi', name: '아우디', isDomestic: false },
+        { key: 'volkswagen', name: '폭스바겐', isDomestic: false },
+        { key: 'mini', name: '미니', isDomestic: false },
+        { key: 'porsche', name: '포르쉐', isDomestic: false },
+        { key: 'maserati', name: '마세라티', isDomestic: false },
+        { key: 'peugeot', name: '푸조', isDomestic: false },
+        { key: 'citroen', name: '시트로엥', isDomestic: false }
+    ];
+    Common.BrandsThird = [
+        { key: 'toyota', name: '토요타', isDomestic: false },
+        { key: 'lexus', name: '렉서스', isDomestic: false },
+        { key: 'honda', name: '혼다', isDomestic: false },
+        { key: 'nissan', name: '닛산', isDomestic: false },
+        { key: 'infiniti', name: '인피니티', isDomestic: false }
+    ];
+    Common.BrandsFourth = [
+        { key: 'landrover', name: '랜드로버', isDomestic: false },
+        { key: 'jaguar', name: '재규어', isDomestic: false },
+        { key: 'volvo', name: '볼보', isDomestic: false },
+        { key: 'ford', name: '포드', isDomestic: false },
+        { key: 'lincoln', name: '링컨', isDomestic: false },
+        { key: 'cadillac', name: '캐딜락', isDomestic: false },
+        { key: 'chrysler', name: '크라이슬러', isDomestic: false },
+        { key: 'fiat', name: '피아트', isDomestic: false },
+        { key: 'jeep', name: '지프', isDomestic: false }
+    ];
     Common.Appearance = {
         sedan: { key: 'sedan', name: '세단' },
         coupe: { key: 'coupe', name: '쿠페' },

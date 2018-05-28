@@ -1,6 +1,6 @@
 {
   "name": "trivefunc",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "A library of pure functions for The Trive mobile application.",
   "main": "index.js",
   "scripts": {

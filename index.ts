@@ -3,6 +3,39 @@ const mapIndexed = R.addIndex(R.map);
 const joinBlank = R.join('');
 import * as C from './data/common.js';
 import { Service } from './interfaces/service.js';
+import { Brand } from './interfaces/brand.js';
+
+/**
+ * Service: a general purpose type to represent message cards in the mobile application.
+ * @typedef {Object} Service
+ * @property {string} key - documentation in progress
+ * @property {string} type - documentation in progress
+ * @property {string} subtype - documentation in progress
+ * @property {string} status - documentation in progress
+ * @property {string} body - documentation in progress
+ * @property {string} responser - documentation in progress
+ * @property {string} requester - documentation in progress
+ * @property {string} followup - documentation in progress
+ * @property {string} requestorName - documentation in progress
+ * @property {string} requestorPhone - documentation in progress
+ * @property {string} province - documentation in progress
+ * @property {string} when - documentation in progress
+ * @property {string} seller - documentation in progress
+ * @property {string} vehicleModel - documentation in progress
+ * @property {string} csStatus - documentation in progress
+ * @property {number} timeRequest - documentation in progress
+ * @property {number} timeResponse - documentation in progress
+ * @property {number} timeReceive - documentation in progress
+ * @property {number} timeRead - documentation in progress
+ * @property {number} timeEstimate - documentation in progress
+ * @property {number} timePhone - documentation in progress
+ * @property {number} timeSMS - documentation in progress
+ * @property {number} dateFirstCall - documentation in progress
+ * @property {number} payback - documentation in progress
+ * @property {boolean} deleted - documentation in progress
+ * @property {} discounts - documentation in progress
+ * @property {} data - documentation in progress
+ */
 
 /**
  * Makes sure that a single digit numeric string is padded with a zero in front.
@@ -74,6 +107,12 @@ const transformNumericString = (original: string): string => {
   }, R.reverse(original));
   return joinBlank(R.reverse(reversedWithCommas));
 };
+
+/**
+ * Format a number or numeric string to be divided every three digits by a comma.
+ * @constructor
+ * @param {(number|string)} original - The number or numeric string.
+ */
 export const transformNumber = (original: number | string): string => {
   if (original === undefined || original === null) return '';
   const type: string = typeof original;
@@ -81,10 +120,17 @@ export const transformNumber = (original: number | string): string => {
   if (type === 'number') return transformNumericString(original.toString());
   else return '';
 };
+
 const formatPrice = (price: number, unit: string): string => {
   if (price === undefined || price === null || typeof price !== 'number') return '';
   return transformNumericString(price.toString()) + unit + (unit === '원' ? '' : ' ');
 }
+
+/**
+ * Format a number to be divided every three digits by a comma, and divided by Korean, monetary notation.
+ * @constructor
+ * @param {number} price - The raw price number (in Korean won).
+ */
 export const transformPrice = (price: number): string => {
   const hundredMillionsNum: number = Math.floor(price / 100000000);
   const hundredMillions: string = hundredMillionsNum ? formatPrice(hundredMillionsNum, '억') : '';
@@ -101,6 +147,12 @@ const filterServiceMessageBuy = (service: Service): boolean => {
   const correctStatus: boolean = 'status' in service && R.find((x) => x === service.status, statusesServiceMessageBuy);
   return correctType && correctStatus
 };
+
+/**
+ * Filter services by the 'buy' category.
+ * @constructor
+ * @param {Array.<Service>} services - List of service messages.
+ */
 export const filterServicesMessageBuy = (services: Array<Service>): Array<Service> => R.filter(filterServiceMessageBuy, services);
 
 const filterServiceBidSuccess = (service: Service): boolean => {
@@ -109,6 +161,12 @@ const filterServiceBidSuccess = (service: Service): boolean => {
   const correctStatus: boolean = 'status' in service && service.status === 'successful-card';
   return correctType && correctStatus;
 };
+
+/**
+ * Filter services by the 'successful bid' category.
+ * @constructor
+ * @param {Array.<Service>} services - List of service messages.
+ */
 export const filterServicesBidSuccess = (services: Array<Service>): Array<Service> => R.filter(filterServiceBidSuccess, services);
 
 const statusesServiceBidFailure: Array<string> = ['failure-card', 'unselected-card'];
@@ -118,6 +176,12 @@ const filterServiceBidFailure = (service: Service): boolean => {
   const correctStatus: boolean = 'status' in service && R.find((x) => x === service.status, statusesServiceBidFailure);
   return correctType && correctStatus && 'data' in service;
 };
+
+/**
+ * Filter services by the 'failed bid' category.
+ * @constructor
+ * @param {Array.<Service>} services - List of service messages.
+ */
 export const filterServicesBidFailure = (services: Array<Service>): Array<Service> => R.filter(filterServiceBidFailure, services);
 
 const statusesServiceMessageSell: Array<string> = ['review-accept', 'review-reject', 'booking-agent'];
@@ -129,6 +193,12 @@ const filterServiceMessageSell = (service: Service): boolean => {
   const correctStatus: boolean = 'status' in service && R.find((x) => x === service.status, statusesServiceMessageSell);
   return (correctType1 && hasDataTag) || (correctType2 && correctStatus);
 };
+
+/**
+ * Filter services by the 'sell' category.
+ * @constructor
+ * @param {Array.<Service>} services - List of service messages.
+ */
 export const filterServicesMessageSell = (services: Array<Service>): Array<Service> => R.filter(filterServiceMessageSell, services);
 
 const filterServiceMessageService = (service: Service): boolean => {
@@ -138,8 +208,19 @@ const filterServiceMessageService = (service: Service): boolean => {
   const noDataTag: boolean = !(service.data) || !(service.data.tag);
   return (correctType1 && noDataTag) || correctType2;
 };
+
+/**
+ * Filter services by the 'misc' category.
+ * @constructor
+ * @param {Array.<Service>} services - List of service messages.
+ */
 export const filterServicesMessageService = (services: Array<Service>): Array<Service> => R.filter(filterServiceMessageService, services);
 
+/**
+ * Format a date string into a dot separated version.
+ * @constructor
+ * @param {string} dateString - String representing the year, month, and day.
+ */
 export const reformatDateString = (dateString: string): string => {
   if (!dateString) return '';
   const year: string = dateString.slice(0, 4);
@@ -148,6 +229,11 @@ export const reformatDateString = (dateString: string): string => {
   return year + '.' + month + '.' + day;
 }
 
+/**
+ * Obfuscate a phone number.
+ * @constructor
+ * @param {string} phone - String representing a phone number.
+ */
 export const obfuscatePhone = (phone: string): string => {
   if (!phone) return '';
   const cleanPhone: string = phone.replace(/[^0-9.]/g, '');
@@ -155,11 +241,21 @@ export const obfuscatePhone = (phone: string): string => {
   return cleanPhone.slice(0, 3) + '-****-' + cleanPhone.slice(7, 11);
 };
 
+/**
+ * Maps a service type to that service's name.
+ * @constructor
+ * @param {string} serviceType - Service type.
+ */
 export const mapServiceType = (serviceType: string): string => {
   if (!serviceType || !(serviceType in C.Common.ServiceTypes)) return '';
   return C.Common.ServiceTypes[serviceType].name;
 }
 
+/**
+ * Maps a customer service type to that service's name.
+ * @constructor
+ * @param {string} csType - Customer service type.
+ */
 export const mapCsType = (csType: string): string => {
   if (!csType || !(csType in C.Common.CSStatus)) return '';
   return C.Common.CSStatus[csType].name;
@@ -171,9 +267,29 @@ const miscPipeHandlers = {
   service: (value: string): string => mapServiceType(value),
   cs: (value: string): string => mapCsType(value)
 };
+
+/**
+ * Maps some action to a string.
+ * @constructor
+ * @param {string} value - Action value.
+ * @param {string} pipeType - Action type.
+ */
 export const handleMiscPipe = (value: string, pipeType: string): string => {
   if (pipeType in miscPipeHandlers) return miscPipeHandlers[pipeType](value);
   return '';
+};
+
+/**
+ * Returns all the rows of the brand picker.
+ * @constructor
+ */
+export const brandRows = (): Array<Array<Brand>> => {
+  return [
+    C.Common.BrandsFirst,
+    C.Common.BrandsSecond,
+    C.Common.BrandsThird,
+    C.Common.BrandsFourth
+  ];
 };
 
 // const tempImageArray = _.clone(this.vehicleImages); // defensive copying

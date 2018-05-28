@@ -33,6 +33,37 @@ var mapIndexed = R.addIndex(R.map);
 var joinBlank = R.join('');
 var C = require("./data/common.js");
 /**
+ * Service: a general purpose type to represent message cards in the mobile application.
+ * @typedef {Object} Service
+ * @property {string} key - documentation in progress
+ * @property {string} type - documentation in progress
+ * @property {string} subtype - documentation in progress
+ * @property {string} status - documentation in progress
+ * @property {string} body - documentation in progress
+ * @property {string} responser - documentation in progress
+ * @property {string} requester - documentation in progress
+ * @property {string} followup - documentation in progress
+ * @property {string} requestorName - documentation in progress
+ * @property {string} requestorPhone - documentation in progress
+ * @property {string} province - documentation in progress
+ * @property {string} when - documentation in progress
+ * @property {string} seller - documentation in progress
+ * @property {string} vehicleModel - documentation in progress
+ * @property {string} csStatus - documentation in progress
+ * @property {number} timeRequest - documentation in progress
+ * @property {number} timeResponse - documentation in progress
+ * @property {number} timeReceive - documentation in progress
+ * @property {number} timeRead - documentation in progress
+ * @property {number} timeEstimate - documentation in progress
+ * @property {number} timePhone - documentation in progress
+ * @property {number} timeSMS - documentation in progress
+ * @property {number} dateFirstCall - documentation in progress
+ * @property {number} payback - documentation in progress
+ * @property {boolean} deleted - documentation in progress
+ * @property {} discounts - documentation in progress
+ * @property {} data - documentation in progress
+ */
+/**
  * Makes sure that a single digit numeric string is padded with a zero in front.
  * @constructor
  * @param {string} original - The original numeric string to change (or return).
@@ -98,6 +129,11 @@ var transformNumericString = function (original) {
     }, R.reverse(original));
     return joinBlank(R.reverse(reversedWithCommas));
 };
+/**
+ * Format a number or numeric string to be divided every three digits by a comma.
+ * @constructor
+ * @param {(number|string)} original - The number or numeric string.
+ */
 exports.transformNumber = function (original) {
     if (original === undefined || original === null)
         return '';
@@ -114,6 +150,11 @@ var formatPrice = function (price, unit) {
         return '';
     return transformNumericString(price.toString()) + unit + (unit === '원' ? '' : ' ');
 };
+/**
+ * Format a number to be divided every three digits by a comma, and divided by Korean, monetary notation.
+ * @constructor
+ * @param {number} price - The raw price number (in Korean won).
+ */
 exports.transformPrice = function (price) {
     var hundredMillionsNum = Math.floor(price / 100000000);
     var hundredMillions = hundredMillionsNum ? formatPrice(hundredMillionsNum, '억') : '';
@@ -130,6 +171,11 @@ var filterServiceMessageBuy = function (service) {
     var correctStatus = 'status' in service &amp;&amp; R.find(function (x) { return x === service.status; }, statusesServiceMessageBuy);
     return correctType &amp;&amp; correctStatus;
 };
+/**
+ * Filter services by the 'buy' category.
+ * @constructor
+ * @param {Array.&lt;Service>} services - List of service messages.
+ */
 exports.filterServicesMessageBuy = function (services) { return R.filter(filterServiceMessageBuy, services); };
 var filterServiceBidSuccess = function (service) {
     if (!service)
@@ -138,6 +184,11 @@ var filterServiceBidSuccess = function (service) {
     var correctStatus = 'status' in service &amp;&amp; service.status === 'successful-card';
     return correctType &amp;&amp; correctStatus;
 };
+/**
+ * Filter services by the 'successful bid' category.
+ * @constructor
+ * @param {Array.&lt;Service>} services - List of service messages.
+ */
 exports.filterServicesBidSuccess = function (services) { return R.filter(filterServiceBidSuccess, services); };
 var statusesServiceBidFailure = ['failure-card', 'unselected-card'];
 var filterServiceBidFailure = function (service) {
@@ -147,6 +198,11 @@ var filterServiceBidFailure = function (service) {
     var correctStatus = 'status' in service &amp;&amp; R.find(function (x) { return x === service.status; }, statusesServiceBidFailure);
     return correctType &amp;&amp; correctStatus &amp;&amp; 'data' in service;
 };
+/**
+ * Filter services by the 'failed bid' category.
+ * @constructor
+ * @param {Array.&lt;Service>} services - List of service messages.
+ */
 exports.filterServicesBidFailure = function (services) { return R.filter(filterServiceBidFailure, services); };
 var statusesServiceMessageSell = ['review-accept', 'review-reject', 'booking-agent'];
 var filterServiceMessageSell = function (service) {
@@ -158,6 +214,11 @@ var filterServiceMessageSell = function (service) {
     var correctStatus = 'status' in service &amp;&amp; R.find(function (x) { return x === service.status; }, statusesServiceMessageSell);
     return (correctType1 &amp;&amp; hasDataTag) || (correctType2 &amp;&amp; correctStatus);
 };
+/**
+ * Filter services by the 'sell' category.
+ * @constructor
+ * @param {Array.&lt;Service>} services - List of service messages.
+ */
 exports.filterServicesMessageSell = function (services) { return R.filter(filterServiceMessageSell, services); };
 var filterServiceMessageService = function (service) {
     if (!service)
@@ -167,7 +228,17 @@ var filterServiceMessageService = function (service) {
     var noDataTag = !(service.data) || !(service.data.tag);
     return (correctType1 &amp;&amp; noDataTag) || correctType2;
 };
+/**
+ * Filter services by the 'misc' category.
+ * @constructor
+ * @param {Array.&lt;Service>} services - List of service messages.
+ */
 exports.filterServicesMessageService = function (services) { return R.filter(filterServiceMessageService, services); };
+/**
+ * Format a date string into a dot separated version.
+ * @constructor
+ * @param {string} dateString - String representing the year, month, and day.
+ */
 exports.reformatDateString = function (dateString) {
     if (!dateString)
         return '';
@@ -176,6 +247,11 @@ exports.reformatDateString = function (dateString) {
     var day = dateString.slice(6, 8);
     return year + '.' + month + '.' + day;
 };
+/**
+ * Obfuscate a phone number.
+ * @constructor
+ * @param {string} phone - String representing a phone number.
+ */
 exports.obfuscatePhone = function (phone) {
     if (!phone)
         return '';
@@ -184,11 +260,21 @@ exports.obfuscatePhone = function (phone) {
         return '';
     return cleanPhone.slice(0, 3) + '-****-' + cleanPhone.slice(7, 11);
 };
+/**
+ * Maps a service type to that service's name.
+ * @constructor
+ * @param {string} serviceType - Service type.
+ */
 exports.mapServiceType = function (serviceType) {
     if (!serviceType || !(serviceType in C.Common.ServiceTypes))
         return '';
     return C.Common.ServiceTypes[serviceType].name;
 };
+/**
+ * Maps a customer service type to that service's name.
+ * @constructor
+ * @param {string} csType - Customer service type.
+ */
 exports.mapCsType = function (csType) {
     if (!csType || !(csType in C.Common.CSStatus))
         return '';
@@ -200,10 +286,28 @@ var miscPipeHandlers = {
     service: function (value) { return exports.mapServiceType(value); },
     cs: function (value) { return exports.mapCsType(value); }
 };
+/**
+ * Maps some action to a string.
+ * @constructor
+ * @param {string} value - Action value.
+ * @param {string} pipeType - Action type.
+ */
 exports.handleMiscPipe = function (value, pipeType) {
     if (pipeType in miscPipeHandlers)
         return miscPipeHandlers[pipeType](value);
     return '';
+};
+/**
+ * Returns all the rows of the brand picker.
+ * @constructor
+ */
+exports.brandRows = function () {
+    return [
+        C.Common.BrandsFirst,
+        C.Common.BrandsSecond,
+        C.Common.BrandsThird,
+        C.Common.BrandsFourth
+    ];
 };
 // const tempImageArray = _.clone(this.vehicleImages); // defensive copying
 // _.remove(tempImageArray, i => i === selectedImageUrl); // mutate tempImageArray
@@ -220,13 +324,13 @@ exports.handleMiscPipe = function (value, pipeType) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="assembleDateString.html">assembleDateString</a></li><li><a href="brandKeyToName.html">brandKeyToName</a></li><li><a href="isValidCarNumber.html">isValidCarNumber</a></li><li><a href="padNumber.html">padNumber</a></li><li><a href="padSingleDigitString.html">padSingleDigitString</a></li><li><a href="transmissionKeyToName.html">transmissionKeyToName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="assembleDateString.html">assembleDateString</a></li><li><a href="brandKeyToName.html">brandKeyToName</a></li><li><a href="brandRows.html">brandRows</a></li><li><a href="filterServicesBidFailure.html">filterServicesBidFailure</a></li><li><a href="filterServicesBidSuccess.html">filterServicesBidSuccess</a></li><li><a href="filterServicesMessageBuy.html">filterServicesMessageBuy</a></li><li><a href="filterServicesMessageSell.html">filterServicesMessageSell</a></li><li><a href="filterServicesMessageService.html">filterServicesMessageService</a></li><li><a href="handleMiscPipe.html">handleMiscPipe</a></li><li><a href="isValidCarNumber.html">isValidCarNumber</a></li><li><a href="mapCsType.html">mapCsType</a></li><li><a href="mapServiceType.html">mapServiceType</a></li><li><a href="obfuscatePhone.html">obfuscatePhone</a></li><li><a href="padNumber.html">padNumber</a></li><li><a href="padSingleDigitString.html">padSingleDigitString</a></li><li><a href="reformatDateString.html">reformatDateString</a></li><li><a href="transformNumber.html">transformNumber</a></li><li><a href="transformPrice.html">transformPrice</a></li><li><a href="transmissionKeyToName.html">transmissionKeyToName</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon May 28 2018 20:14:39 GMT+0900 (KST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue May 29 2018 01:03:53 GMT+0900 (KST)
 </footer>
 
 <script> prettyPrint(); </script>

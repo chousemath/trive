@@ -2,6 +2,7 @@ import * as A from 'assert';
 import * as M from 'mocha';
 import * as T from '../index';
 import { Service } from '../interfaces/service';
+import { Brand } from '../interfaces/brand';
 
 M.describe('Trive', () => {
   M.describe('#padSingleDigitString', () => {
@@ -288,6 +289,11 @@ M.describe('Trive', () => {
       A.equal(T.handleMiscPipe('010-6851-3003', 'phone'), '010-****-3003');
       A.equal(T.handleMiscPipe('19900707', 'date'), '1990.07.07');
       A.equal(T.handleMiscPipe('19891211', 'date'), '1989.12.11');
+    });
+  });
+  M.describe('#brandRows', () => {
+    M.it('should return all brands for the brand picker', () => {
+      A.equal(T.brandRows().length, 4);
     });
   });
 });
