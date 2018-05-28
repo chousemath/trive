@@ -264,6 +264,14 @@ export namespace Common {
     cancel: { key: 'cancel', name: '취소' }
   };
 
+  export const ServiceTypes = {
+    publish: { key: 'publish', name: '발송' },
+    fail: { key: 'fail', name: '실패' },
+    stop: { key: 'stop', name: '중지' },
+    finish: { key: 'finish', name: '완료' }
+  };
+
+
   export const BasicOptions = {
     motor: {
       ops: { key: 'ops', name: '작동상태(공회전)' },

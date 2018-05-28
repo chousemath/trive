@@ -124,17 +124,26 @@ exports.obfuscatePhone = function (phone) {
         return '';
     return cleanPhone.slice(0, 3) + '-****-' + cleanPhone.slice(7, 11);
 };
-var serviceTypes = { publish: '발송', fail: '실패', stop: '중지', finish: '완료' };
 exports.mapServiceType = function (serviceType) {
-    if (!(serviceType in serviceTypes))
+    if (!serviceType || !(serviceType in C.Common.ServiceTypes))
         return '';
-    return serviceTypes[serviceType];
+    return C.Common.ServiceTypes[serviceType].name;
 };
-var csTypes = { doing: '처리중', done: '완료', cancel: '취소' };
 exports.mapCsType = function (csType) {
-    if (!(csType in csTypes))
+    if (!csType || !(csType in C.Common.CSStatus))
         return '';
-    return csTypes[csType];
+    return C.Common.CSStatus[csType].name;
+};
+var miscPipeHandlers = {
+    date: function (value) { return exports.reformatDateString(value); },
+    phone: function (value) { return exports.obfuscatePhone(value); },
+    service: function (value) { return exports.mapServiceType(value); },
+    cs: function (value) { return exports.mapCsType(value); }
+};
+exports.handleMiscPipe = function (value, pipeType) {
+    if (pipeType in miscPipeHandlers)
+        return miscPipeHandlers[pipeType](value);
+    return '';
 };
 // const tempImageArray = _.clone(this.vehicleImages); // defensive copying
 // _.remove(tempImageArray, i => i === selectedImageUrl); // mutate tempImageArray

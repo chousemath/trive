@@ -240,6 +240,12 @@ var Common;
         done: { key: 'done', name: '완료' },
         cancel: { key: 'cancel', name: '취소' }
     };
+    Common.ServiceTypes = {
+        publish: { key: 'publish', name: '발송' },
+        fail: { key: 'fail', name: '실패' },
+        stop: { key: 'stop', name: '중지' },
+        finish: { key: 'finish', name: '완료' }
+    };
     Common.BasicOptions = {
         motor: {
             ops: { key: 'ops', name: '작동상태(공회전)' },

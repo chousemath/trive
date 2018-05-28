@@ -122,16 +122,25 @@ export const obfuscatePhone = (phone: string): string => {
   return cleanPhone.slice(0, 3) + '-****-' + cleanPhone.slice(7, 11);
 };
 
-const serviceTypes = { publish: '발송', fail: '실패', stop: '중지', finish: '완료' };
 export const mapServiceType = (serviceType: string): string => {
-  if (!(serviceType in serviceTypes)) return '';
-  return serviceTypes[serviceType];
+  if (!serviceType || !(serviceType in C.Common.ServiceTypes)) return '';
+  return C.Common.ServiceTypes[serviceType].name;
 }
 
-const csTypes = { doing: '처리중', done: '완료', cancel: '취소' };
 export const mapCsType = (csType: string): string => {
-  if (!(csType in csTypes)) return '';
-  return csTypes[csType];
+  if (!csType || !(csType in C.Common.CSStatus)) return '';
+  return C.Common.CSStatus[csType].name;
+};
+
+const miscPipeHandlers = {
+  date: (value: string): string => reformatDateString(value),
+  phone: (value: string): string => obfuscatePhone(value),
+  service: (value: string): string => mapServiceType(value),
+  cs: (value: string): string => mapCsType(value)
+};
+export const handleMiscPipe = (value: string, pipeType: string): string => {
+  if (pipeType in miscPipeHandlers) return miscPipeHandlers[pipeType](value);
+  return '';
 };
 
 // const tempImageArray = _.clone(this.vehicleImages); // defensive copying

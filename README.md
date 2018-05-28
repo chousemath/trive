@@ -36,6 +36,7 @@ $ npm run-script compile
 * [filterServicesMessageBuy](#filterservicesmessagebuy)
 * [filterServicesMessageSell](#filterservicesmessagesell)
 * [filterServicesMessageService](#filterservicesmessageservice)
+* [handleMiscPipe](#handlemiscpipe)
 * [isValidCarNumber](#isvalidcarnumber)
 * [mapCsType](#mapcstype)
 * [mapServiceType](#mapservicetype)
@@ -67,31 +68,37 @@ brandKeyToName('kia')
 #### **filterServicesBidFailure**
 
 ```javascript
-DOCUMENTATION IN PROGRESS
+// DOCUMENTATION IN PROGRESS
 ```
 
 #### **filterServicesBidSuccess**
 
 ```javascript
-DOCUMENTATION IN PROGRESS
+// DOCUMENTATION IN PROGRESS
 ```
 
 #### **filterServicesMessageBuy**
 
 ```javascript
-DOCUMENTATION IN PROGRESS
+// DOCUMENTATION IN PROGRESS
 ```
 
 #### **filterServicesMessageSell**
 
 ```javascript
-DOCUMENTATION IN PROGRESS
+// DOCUMENTATION IN PROGRESS
 ```
 
 #### **filterServicesMessageService**
 
 ```javascript
-DOCUMENTATION IN PROGRESS
+// DOCUMENTATION IN PROGRESS
+```
+
+#### **handleMiscPipe**
+
+```javascript
+// DOCUMENTATION IN PROGRESS
 ```
 
 #### **isValidCarNumber**
@@ -108,19 +115,19 @@ isValidCarNumber('1191111')
 #### **mapCsType**
 
 ```javascript
-DOCUMENTATION IN PROGRESS
+// DOCUMENTATION IN PROGRESS
 ```
 
 #### **mapServiceType**
 
 ```javascript
-DOCUMENTATION IN PROGRESS
+// DOCUMENTATION IN PROGRESS
 ```
 
 #### **reformatDateString**
 
 ```javascript
-DOCUMENTATION IN PROGRESS
+// DOCUMENTATION IN PROGRESS
 ```
 
 #### **transformNumber**

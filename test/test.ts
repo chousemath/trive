@@ -278,4 +278,16 @@ M.describe('Trive', () => {
       A.equal(T.mapCsType('done'), '완료');
     });
   });
+  M.describe('#handleMiscPipe', () => {
+    M.it('should correctly map a misc pipe request to the appropriate string response', () => {
+      A.equal(T.handleMiscPipe('doing', 'cs'), '처리중');
+      A.equal(T.handleMiscPipe('done', 'cs'), '완료');
+      A.equal(T.handleMiscPipe('publish', 'service'), '발송');
+      A.equal(T.handleMiscPipe('fail', 'service'), '실패');
+      A.equal(T.handleMiscPipe('01068513003', 'phone'), '010-****-3003');
+      A.equal(T.handleMiscPipe('010-6851-3003', 'phone'), '010-****-3003');
+      A.equal(T.handleMiscPipe('19900707', 'date'), '1990.07.07');
+      A.equal(T.handleMiscPipe('19891211', 'date'), '1989.12.11');
+    });
+  });
 });
