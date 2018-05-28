@@ -278,24 +278,3 @@ export const handleMiscPipe = (value: string, pipeType: string): string => {
   if (pipeType in miscPipeHandlers) return miscPipeHandlers[pipeType](value);
   return '';
 };
-
-/**
- * Returns all the rows of the brand picker.
- * @constructor
- */
-export const brandRows = (): Array<Array<Brand>> => {
-  return [
-    C.Common.BrandsFirst,
-    C.Common.BrandsSecond,
-    C.Common.BrandsThird,
-    C.Common.BrandsFourth
-  ];
-};
-
-// const tempImageArray = _.clone(this.vehicleImages); // defensive copying
-// _.remove(tempImageArray, i => i === selectedImageUrl); // mutate tempImageArray
-// const organizedImageArray = _.concat(selectedImageUrl, tempImageArray);
-
-// export const reorganizeImages = (selectedImage: string, imageArray: Array<string>): Array<string> => {
-
-// };
