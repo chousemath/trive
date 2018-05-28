@@ -6,7 +6,8 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
     "compile": "./compile.sh",
-    "compress": "uglifyjs index.js --compress -o index.js"
+    "compress": "uglifyjs index.js --compress -o index.js",
+    "docs": "jsdoc --readme /Users/jo/Desktop/libraries/trivefunc/README.md /Users/jo/Desktop/libraries/trivefunc/index.js"
   },
   "author": "Joseph Sungpil Choi",
   "license": "ISC",

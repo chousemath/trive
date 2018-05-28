@@ -1,6 +1,6 @@
 ### The Trive Javascript Library
 
-[![Build Status](https://travis-ci.org/chousemath/trive.svg?branch=master)](https://travis-ci.org/chousemath/trive)
+[![Github](readme/github-logo.png =100x100)](https://github.com/chousemath/trive) [![Documentation](readme/documentation-logo.png =100x100)](trive-library-docs.firebaseapp.com) [![Build Status](https://travis-ci.org/chousemath/trive.svg?branch=master)](https://travis-ci.org/chousemath/trive)
 
 > A collection of useful library functions, because I got tired of writing the same client-side logic across hybrid mobile and web, and multiple versions of both.
 
@@ -32,7 +32,7 @@ $ npm run-script compile
 ### Create the Documentation!
 
 ```bash
-$ jsdoc index.js
+$ jsdoc --readme /Users/jo/Desktop/libraries/trivefunc/README.md /Users/jo/Desktop/libraries/trivefunc/index.js
 ```
 
 ### Compress All the Things!

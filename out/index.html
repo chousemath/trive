@@ -42,6 +42,78 @@
 
 
 
+    <section>
+        <article><h3>The Trive Javascript Library</h3><p><a href="https://github.com/chousemath/trive"><img src="readme/github-logo.png =100x100" alt="Github"></a> <a href="trive-library-docs.firebaseapp.com"><img src="readme/documentation-logo.png =100x100" alt="Documentation"></a> <a href="https://travis-ci.org/chousemath/trive"><img src="https://travis-ci.org/chousemath/trive.svg?branch=master" alt="Build Status"></a></p>
+<blockquote>
+<p>A collection of useful library functions, because I got tired of writing the same client-side logic across hybrid mobile and web, and multiple versions of both.</p>
+</blockquote>
+<h3>Install Project Dependencies</h3><pre class="prettyprint source lang-bash"><code>$ npm i</code></pre><h3>Running the Test Suite</h3><blockquote>
+<p>Because who doesn't love writing tests?</p>
+</blockquote>
+<pre class="prettyprint source lang-bash"><code>$ ./node_modules/mocha/bin/mocha
+# or simply...
+$ npm test</code></pre><h3>Compile All the Things!</h3><pre class="prettyprint source lang-bash"><code>$ chmod +x compile.sh
+$ ./compile.sh
+# or simply...
+$ npm run-script compile</code></pre><h3>Create the Documentation!</h3><pre class="prettyprint source lang-bash"><code>$ jsdoc --readme /Users/jo/Desktop/libraries/trivefunc/README.md /Users/jo/Desktop/libraries/trivefunc/index.js</code></pre><h3>Compress All the Things!</h3><pre class="prettyprint source lang-bash"><code>$ npm run-script compress</code></pre><h3>Publish to NPM!</h3><pre class="prettyprint source lang-bash"><code># You must be a maintainer
+$ npm publish</code></pre><h3>Documentation</h3><ul>
+<li><a href="#assembledatestring">assembleDateString</a></li>
+<li><a href="#brandkeytoname">brandKeyToName</a></li>
+<li><a href="#filterservicesbidfailure">filterServicesBidFailure</a></li>
+<li><a href="#filterservicesbidsuccess">filterServicesBidSuccess</a></li>
+<li><a href="#filterservicesmessagebuy">filterServicesMessageBuy</a></li>
+<li><a href="#filterservicesmessagesell">filterServicesMessageSell</a></li>
+<li><a href="#filterservicesmessageservice">filterServicesMessageService</a></li>
+<li><a href="#handlemiscpipe">handleMiscPipe</a></li>
+<li><a href="#isvalidcarnumber">isValidCarNumber</a></li>
+<li><a href="#mapcstype">mapCsType</a></li>
+<li><a href="#mapservicetype">mapServiceType</a></li>
+<li><a href="#reformatdatestring">reformatDateString</a></li>
+<li><a href="#transformnumber">transformNumber</a></li>
+<li><a href="#transformprice">transformPrice</a></li>
+<li><a href="#transmissionkeytoname">transmissionKeyToName</a></li>
+</ul>
+<h4><strong>assembleDateString</strong></h4><pre class="prettyprint source lang-javascript"><code>// Arguments: year: number | string, month: number | string, day: number | string
+// Return Value: string
+assembleDateString(1990, 7, 7)
+// '19900707'
+assembleDateString('1990', '7', '7')
+// '19900707'</code></pre><h4><strong>brandKeyToName</strong></h4><pre class="prettyprint source lang-javascript"><code>// Arguments: brandKey: string
+// Return Value: string
+brandKeyToName('kia')
+// '기아'</code></pre><h4><strong>filterServicesBidFailure</strong></h4><pre class="prettyprint source lang-javascript"><code>// DOCUMENTATION IN PROGRESS</code></pre><h4><strong>filterServicesBidSuccess</strong></h4><pre class="prettyprint source lang-javascript"><code>// DOCUMENTATION IN PROGRESS</code></pre><h4><strong>filterServicesMessageBuy</strong></h4><pre class="prettyprint source lang-javascript"><code>// DOCUMENTATION IN PROGRESS</code></pre><h4><strong>filterServicesMessageSell</strong></h4><pre class="prettyprint source lang-javascript"><code>// DOCUMENTATION IN PROGRESS</code></pre><h4><strong>filterServicesMessageService</strong></h4><pre class="prettyprint source lang-javascript"><code>// DOCUMENTATION IN PROGRESS</code></pre><h4><strong>handleMiscPipe</strong></h4><pre class="prettyprint source lang-javascript"><code>// DOCUMENTATION IN PROGRESS</code></pre><h4><strong>isValidCarNumber</strong></h4><pre class="prettyprint source lang-javascript"><code>// Arguments: carNumber: string
+// Return Value: boolean
+isValidCarNumber('11헐1111')
+// true
+isValidCarNumber('1191111')
+// false</code></pre><h4><strong>mapCsType</strong></h4><pre class="prettyprint source lang-javascript"><code>// DOCUMENTATION IN PROGRESS</code></pre><h4><strong>mapServiceType</strong></h4><pre class="prettyprint source lang-javascript"><code>// DOCUMENTATION IN PROGRESS</code></pre><h4><strong>reformatDateString</strong></h4><pre class="prettyprint source lang-javascript"><code>// DOCUMENTATION IN PROGRESS</code></pre><h4><strong>transformNumber</strong></h4><pre class="prettyprint source lang-javascript"><code>// Arguments: original: number | string
+// Return Value: string
+transformNumber('9999999')
+// '9,999,999'
+transformNumber(1000)
+// '1,000'</code></pre><h4><strong>transformPrice</strong></h4><pre class="prettyprint source lang-javascript"><code>// Arguments: price: number
+// Return Value: string
+transformPrice(0)
+// '0원'
+transformPrice(990)
+// '990원'
+transformPrice(1120)
+// '1,120원'
+transformPrice(19120)
+// '1만 9,120원'
+transformPrice(129120)
+// '12만 9,120원'
+transformPrice(99129120)
+// '9,912만 9,120원'
+transformPrice(699129120)
+// '6억 9,912만 9,120원'
+transformPrice(55699129120)
+// '556억 9,912만 9,120원'</code></pre><h4><strong>transmissionKeyToName</strong></h4><pre class="prettyprint source lang-javascript"><code>// Arguments: transmissionKey: string
+// Return Value: string
+transmissionKeyToName('automatic_')
+// '자동'</code></pre></article>
+    </section>
+
 
 
 
@@ -56,7 +128,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon May 28 2018 19:49:04 GMT+0900 (KST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon May 28 2018 20:04:13 GMT+0900 (KST)
 </footer>
 
 <script> prettyPrint(); </script>
