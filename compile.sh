@@ -18,6 +18,7 @@ tsc interfaces/header-option.ts
 tsc interfaces/hot-deal.ts
 tsc interfaces/option.ts
 tsc interfaces/point-data.ts
+tsc interfaces/service.ts
 tsc interfaces/side-menu.ts
 tsc interfaces/used.ts
 tsc interfaces/user-header.ts

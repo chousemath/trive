@@ -31,6 +31,11 @@ $ npm run-script compile
 
 * [assembleDateString](#assembledatestring)
 * [brandKeyToName](#brandkeytoname)
+* [filterServicesBidFailure](#filterservicesbidfailure)
+* [filterServicesBidSuccess](#filterservicesbidsuccess)
+* [filterServicesMessageBuy](#filterservicesmessagebuy)
+* [filterServicesMessageSell](#filterservicesmessagesell)
+* [filterServicesMessageService](#filterservicesmessageservice)
 * [isValidCarNumber](#isvalidcarnumber)
 * [transformNumber](#transformnumber)
 * [transformPrice](#transformprice)
@@ -56,6 +61,35 @@ brandKeyToName('kia')
 // '기아'
 ```
 
+#### **filterServicesBidFailure**
+
+```javascript
+DOCUMENTATION IN PROGRESS
+```
+
+#### **filterServicesBidSuccess**
+
+```javascript
+DOCUMENTATION IN PROGRESS
+```
+
+#### **filterServicesMessageBuy**
+
+```javascript
+DOCUMENTATION IN PROGRESS
+```
+
+#### **filterServicesMessageSell**
+
+```javascript
+DOCUMENTATION IN PROGRESS
+```
+
+#### **filterServicesMessageService**
+
+```javascript
+DOCUMENTATION IN PROGRESS
+```
 
 #### **isValidCarNumber**
 

@@ -120,4 +120,134 @@ M.describe('Trive', function () {
             A.equal(T.transformPrice(255699129120), '2,556억 9,912만 9,120원');
         });
     });
+    M.describe('#filterServicesMessageBuy', function () {
+        M.it('should correctly filter services with the message buy label', function () {
+            var input1 = [
+                { type: 'used', status: 'noti-max-bidding' },
+                { type: 'used', status: 'not-valid' }
+            ];
+            var input2 = [
+                { type: 'used', status: 'noti-max-bidding' },
+                { type: 'used', status: 'not-valid' },
+                { type: 'used', status: 'noti-warn1' }
+            ];
+            var output1 = [{ type: 'used', status: 'noti-max-bidding' }];
+            var output2 = [
+                { type: 'used', status: 'noti-max-bidding' },
+                { type: 'used', status: 'noti-warn1' }
+            ];
+            var output1Actual = T.filterServicesMessageBuy(input1);
+            var output2Actual = T.filterServicesMessageBuy(input2);
+            A.equal(output1Actual.length, output1.length);
+            A.equal(output1Actual[0].type, output1[0].type);
+            A.equal(output1Actual[0].status, output1[0].status);
+            A.equal(output2Actual.length, output2.length);
+            A.equal(output2Actual[0].type, output2[0].type);
+            A.equal(output2Actual[0].status, output2[0].status);
+            A.equal(output2Actual[1].type, output2[1].type);
+            A.equal(output2Actual[1].status, output2[1].status);
+        });
+    });
+    M.describe('#filterServicesBidSuccess', function () {
+        M.it('should correctly filter services with the message buy label', function () {
+            var input1 = [
+                { type: 'used', status: 'successful-card' },
+                { type: 'used', status: 'not-valid' }
+            ];
+            var input2 = [
+                { type: 'used', status: 'successful-card' },
+                { type: 'used', status: 'not-valid' },
+                { type: 'used', status: 'noti-warn1' }
+            ];
+            var output1 = [{ type: 'used', status: 'successful-card' }];
+            var output1Actual = T.filterServicesBidSuccess(input1);
+            var output2Actual = T.filterServicesBidSuccess(input2);
+            A.equal(output1Actual.length, output1.length);
+            A.equal(output1Actual[0].type, output1[0].type);
+            A.equal(output1Actual[0].status, output1[0].status);
+            A.equal(output2Actual.length, output1.length);
+            A.equal(output2Actual[0].type, output1[0].type);
+        });
+    });
+    M.describe('#filterServicesBidFailure', function () {
+        M.it('should correctly filter services with the message buy label', function () {
+            var input1 = [
+                { type: 'used', status: 'failure-card' },
+                { type: 'used', status: 'not-valid' }
+            ];
+            var input2 = [
+                { type: 'used', status: 'failure-card' },
+                { type: 'used', status: 'not-valid' },
+                { type: 'used', status: 'unselected-card' }
+            ];
+            var output1 = [{ type: 'used', status: 'failure-card' }];
+            var output2 = [
+                { type: 'used', status: 'failure-card' },
+                { type: 'used', status: 'unselected-card' }
+            ];
+            var output1Actual = T.filterServicesBidFailure(input1);
+            var output2Actual = T.filterServicesBidFailure(input2);
+            A.equal(output1Actual.length, output1.length);
+            A.equal(output1Actual[0].type, output1[0].type);
+            A.equal(output1Actual[0].status, output1[0].status);
+            A.equal(output2Actual.length, output2.length);
+            A.equal(output2Actual[0].type, output2[0].type);
+            A.equal(output2Actual[0].status, output2[0].status);
+            A.equal(output2Actual[1].type, output2[1].type);
+            A.equal(output2Actual[1].status, output2[1].status);
+        });
+    });
+    M.describe('#filterServicesMessageSell', function () {
+        M.it('should correctly filter services with the message buy label', function () {
+            var input1 = [
+                { type: 'used', status: 'review-accept' },
+                { type: 'used', status: 'not-valid' }
+            ];
+            var input2 = [
+                { type: 'used', status: 'review-accept' },
+                { type: 'used', status: 'not-valid' },
+                { type: 'inquiry', data: { tag: 'x' } }
+            ];
+            var output1 = [{ type: 'used', status: 'review-accept' }];
+            var output2 = [
+                { type: 'used', status: 'review-accept' },
+                { type: 'inquiry', data: { tag: 'x' } }
+            ];
+            var output1Actual = T.filterServicesMessageSell(input1);
+            var output2Actual = T.filterServicesMessageSell(input2);
+            A.equal(output1Actual.length, output1.length);
+            A.equal(output1Actual[0].type, output1[0].type);
+            A.equal(output1Actual[0].status, output1[0].status);
+            A.equal(output2Actual.length, output2.length);
+            A.equal(output2Actual[0].type, output2[0].type);
+            A.equal(output2Actual[0].status, output2[0].status);
+            A.equal(output2Actual[1].type, output2[1].type);
+            A.equal(output2Actual[1].data.tag, output2[1].data.tag);
+        });
+    });
+    M.describe('#filterServiceMessagesService', function () {
+        M.it('should correctly filter services with the message buy label', function () {
+            var input1 = [
+                { type: 'notice' },
+                { type: 'used', status: 'not-valid' }
+            ];
+            var input2 = [
+                { type: 'notice' },
+                { type: 'used', status: 'not-valid' },
+                { type: 'inquiry' }
+            ];
+            var output1 = [{ type: 'notice' }];
+            var output2 = [
+                { type: 'notice' },
+                { type: 'inquiry' }
+            ];
+            var output1Actual = T.filterServicesMessageService(input1);
+            var output2Actual = T.filterServicesMessageService(input2);
+            A.equal(output1Actual.length, output1.length);
+            A.equal(output1Actual[0].type, output1[0].type);
+            A.equal(output2Actual.length, output2.length);
+            A.equal(output2Actual[0].type, output2[0].type);
+            A.equal(output2Actual[1].type, output2[1].type);
+        });
+    });
 });

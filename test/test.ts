@@ -1,6 +1,7 @@
 import * as A from 'assert';
 import * as M from 'mocha';
 import * as T from '../index';
+import { Service } from '../interfaces/service';
 
 M.describe('Trive', () => {
   M.describe('#padSingleDigitString', () => {
@@ -117,6 +118,136 @@ M.describe('Trive', () => {
       A.equal(T.transformPrice(699129120), '6억 9,912만 9,120원');
       A.equal(T.transformPrice(55699129120), '556억 9,912만 9,120원');
       A.equal(T.transformPrice(255699129120), '2,556억 9,912만 9,120원');
+    });
+  });
+  M.describe('#filterServicesMessageBuy', () => {
+    M.it('should correctly filter services with the message buy label', () => {
+      const input1: Array<any> = [
+        { type: 'used', status: 'noti-max-bidding' },
+        { type: 'used', status: 'not-valid' }
+      ];
+      const input2: Array<any> = [
+        { type: 'used', status: 'noti-max-bidding' },
+        { type: 'used', status: 'not-valid' },
+        { type: 'used', status: 'noti-warn1' }
+      ];
+      const output1: Array<any> = [{ type: 'used', status: 'noti-max-bidding' }];
+      const output2: Array<any> = [
+        { type: 'used', status: 'noti-max-bidding' },
+        { type: 'used', status: 'noti-warn1' }
+      ];
+      const output1Actual: Array<Service> = T.filterServicesMessageBuy(input1);
+      const output2Actual: Array<Service> = T.filterServicesMessageBuy(input2);
+      A.equal(output1Actual.length, output1.length);
+      A.equal(output1Actual[0].type, output1[0].type);
+      A.equal(output1Actual[0].status, output1[0].status);
+      A.equal(output2Actual.length, output2.length);
+      A.equal(output2Actual[0].type, output2[0].type);
+      A.equal(output2Actual[0].status, output2[0].status);
+      A.equal(output2Actual[1].type, output2[1].type);
+      A.equal(output2Actual[1].status, output2[1].status);
+    });
+  });
+  M.describe('#filterServicesBidSuccess', () => {
+    M.it('should correctly filter services with the message buy label', () => {
+      const input1: Array<any> = [
+        { type: 'used', status: 'successful-card' },
+        { type: 'used', status: 'not-valid' }
+      ];
+      const input2: Array<any> = [
+        { type: 'used', status: 'successful-card' },
+        { type: 'used', status: 'not-valid' },
+        { type: 'used', status: 'noti-warn1' }
+      ];
+      const output1: Array<any> = [{ type: 'used', status: 'successful-card' }];
+      const output1Actual: Array<Service> = T.filterServicesBidSuccess(input1);
+      const output2Actual: Array<Service> = T.filterServicesBidSuccess(input2);
+      A.equal(output1Actual.length, output1.length);
+      A.equal(output1Actual[0].type, output1[0].type);
+      A.equal(output1Actual[0].status, output1[0].status);
+      A.equal(output2Actual.length, output1.length);
+      A.equal(output2Actual[0].type, output1[0].type);
+    });
+  });
+  M.describe('#filterServicesBidFailure', () => {
+    M.it('should correctly filter services with the message buy label', () => {
+      const input1: Array<any> = [
+        { type: 'used', status: 'failure-card' },
+        { type: 'used', status: 'not-valid' }
+      ];
+      const input2: Array<any> = [
+        { type: 'used', status: 'failure-card' },
+        { type: 'used', status: 'not-valid' },
+        { type: 'used', status: 'unselected-card' }
+      ];
+      const output1: Array<any> = [{ type: 'used', status: 'failure-card' }];
+      const output2: Array<any> = [
+        { type: 'used', status: 'failure-card' },
+        { type: 'used', status: 'unselected-card' }
+      ];
+      const output1Actual: Array<Service> = T.filterServicesBidFailure(input1);
+      const output2Actual: Array<Service> = T.filterServicesBidFailure(input2);
+      A.equal(output1Actual.length, output1.length);
+      A.equal(output1Actual[0].type, output1[0].type);
+      A.equal(output1Actual[0].status, output1[0].status);
+      A.equal(output2Actual.length, output2.length);
+      A.equal(output2Actual[0].type, output2[0].type);
+      A.equal(output2Actual[0].status, output2[0].status);
+      A.equal(output2Actual[1].type, output2[1].type);
+      A.equal(output2Actual[1].status, output2[1].status);
+    });
+  });
+  M.describe('#filterServicesMessageSell', () => {
+    M.it('should correctly filter services with the message buy label', () => {
+      const input1: Array<any> = [
+        { type: 'used', status: 'review-accept' },
+        { type: 'used', status: 'not-valid' }
+      ];
+      const input2: Array<any> = [
+        { type: 'used', status: 'review-accept' },
+        { type: 'used', status: 'not-valid' },
+        { type: 'inquiry', data: { tag: 'x' } }
+      ];
+      const output1: Array<any> = [{ type: 'used', status: 'review-accept' }];
+      const output2: Array<any> = [
+        { type: 'used', status: 'review-accept' },
+        { type: 'inquiry', data: { tag: 'x' } }
+      ];
+      const output1Actual: Array<Service> = T.filterServicesMessageSell(input1);
+      const output2Actual: Array<Service> = T.filterServicesMessageSell(input2);
+      A.equal(output1Actual.length, output1.length);
+      A.equal(output1Actual[0].type, output1[0].type);
+      A.equal(output1Actual[0].status, output1[0].status);
+      A.equal(output2Actual.length, output2.length);
+      A.equal(output2Actual[0].type, output2[0].type);
+      A.equal(output2Actual[0].status, output2[0].status);
+      A.equal(output2Actual[1].type, output2[1].type);
+      A.equal(output2Actual[1].data.tag, output2[1].data.tag);
+    });
+  });
+  M.describe('#filterServiceMessagesService', () => {
+    M.it('should correctly filter services with the message buy label', () => {
+      const input1: Array<any> = [
+        { type: 'notice' },
+        { type: 'used', status: 'not-valid' }
+      ];
+      const input2: Array<any> = [
+        { type: 'notice' },
+        { type: 'used', status: 'not-valid' },
+        { type: 'inquiry' }
+      ];
+      const output1: Array<any> = [{ type: 'notice' }];
+      const output2: Array<any> = [
+        { type: 'notice' },
+        { type: 'inquiry' }
+      ];
+      const output1Actual: Array<Service> = T.filterServicesMessageService(input1);
+      const output2Actual: Array<Service> = T.filterServicesMessageService(input2);
+      A.equal(output1Actual.length, output1.length);
+      A.equal(output1Actual[0].type, output1[0].type);
+      A.equal(output2Actual.length, output2.length);
+      A.equal(output2Actual[0].type, output2[0].type);
+      A.equal(output2Actual[1].type, output2[1].type);
     });
   });
 });
