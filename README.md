@@ -27,6 +27,12 @@ $ ./compile.sh
 $ npm run-script compile
 ```
 
+### Compress All the Things!
+
+```bash
+$ npm run-script compress
+```
+
 ### Documentation
 
 * [assembleDateString](#assembledatestring)
