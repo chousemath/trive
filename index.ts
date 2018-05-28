@@ -101,6 +101,13 @@ const filterServiceMessageService = (service: Service): boolean => {
 };
 export const filterServicesMessageService = (services: Array<Service>): Array<Service> => R.filter(filterServiceMessageService, services);
 
+export const reformatDateString = (dateString: string): string => {
+  const year: string = dateString.slice(0, 4);
+  const month: string = dateString.slice(4, 6);
+  const day: string = dateString.slice(6, 8);
+  return year + '.' + month + '.' + day;
+}
+
 // const tempImageArray = _.clone(this.vehicleImages); // defensive copying
 // _.remove(tempImageArray, i => i === selectedImageUrl); // mutate tempImageArray
 // const organizedImageArray = _.concat(selectedImageUrl, tempImageArray);

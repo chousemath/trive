@@ -96,6 +96,12 @@ var filterServiceMessageService = function (service) {
     return (correctType1 && noDataTag) || correctType2;
 };
 exports.filterServicesMessageService = function (services) { return R.filter(filterServiceMessageService, services); };
+exports.reformatDateString = function (dateString) {
+    var year = dateString.slice(0, 4);
+    var month = dateString.slice(4, 6);
+    var day = dateString.slice(6, 8);
+    return year + '.' + month + '.' + day;
+};
 // const tempImageArray = _.clone(this.vehicleImages); // defensive copying
 // _.remove(tempImageArray, i => i === selectedImageUrl); // mutate tempImageArray
 // const organizedImageArray = _.concat(selectedImageUrl, tempImageArray);

@@ -250,4 +250,10 @@ M.describe('Trive', function () {
             A.equal(output2Actual[1].type, output2[1].type);
         });
     });
+    M.describe('#reformatDateString', function () {
+        M.it('should correctly reformat a date string', function () {
+            A.equal(T.reformatDateString('19900707'), '1990.07.07');
+            A.equal(T.reformatDateString('19891211'), '1989.12.11');
+        });
+    });
 });
