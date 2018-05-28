@@ -1,5 +1,7 @@
 ### The Trive Javascript Library
 
+[![Build Status](https://travis-ci.org/chousemath/trive.svg?branch=master)](https://travis-ci.org/chousemath/trive)
+
 > A collection of useful library functions, because I got tired of writing the same client-side logic across hybrid mobile and web, and multiple versions of both.
 
 ### Install Project Dependencies
