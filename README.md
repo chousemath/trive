@@ -29,10 +29,23 @@ $ ./compile.sh
 $ npm run-script compile
 ```
 
+### Create the Documentation!
+
+```bash
+$ jsdoc index.js
+```
+
 ### Compress All the Things!
 
 ```bash
 $ npm run-script compress
+```
+
+### Publish to NPM!
+
+```bash
+# You must be a maintainer
+$ npm publish
 ```
 
 ### Documentation

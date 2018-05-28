@@ -4,10 +4,20 @@ const joinBlank = R.join('');
 import * as C from './data/common.js';
 import { Service } from './interfaces/service.js';
 
+/**
+ * Makes sure that a single digit numeric string is padded with a zero in front.
+ * @constructor
+ * @param {string} original - The original numeric string to change (or return).
+ */
 export const padSingleDigitString = (original: string): string => {
   return original.length === 1 ? '0' + original : original;
 }
 
+/**
+ * Makes sure that a single digit numeric value (number or string) is padded with a zero in front.
+ * @constructor
+ * @param {(number|string)} original - The original numeric value (number or string) to change (or return).
+ */
 export const padNumber = (original: number | string): string => {
   if (!original) return '';
   const type: string = typeof original;
@@ -16,6 +26,13 @@ export const padNumber = (original: number | string): string => {
   else return '';
 };
 
+/**
+ * Formats a year, month, and day value into a string form appropriate for our database.
+ * @constructor
+ * @param {(number|string)} year - The year value of the date.
+ * @param {(number|string)} month - The month value of the date.
+ * @param {(number|string)} day - The day value of the date.
+ */
 export const assembleDateString = (
   year: number | string,
   month: number | string,
@@ -26,9 +43,25 @@ export const assembleDateString = (
 };
 
 const regexCarNumber: RegExp = /^[0-9][0-9][^a-zA-Z0-9][0-9][0-9][0-9][0-9]+$/;
+/**
+ * Decides whether or not an input string is a valid, Korean license plate number (차량번호).
+ * @constructor
+ * @param {string} carNumber - The license plate number in question.
+ */
 export const isValidCarNumber = (carNumber: string): boolean => regexCarNumber.test(carNumber) && carNumber.length === 7;
 
+/**
+ * Converts a brand key (used in Firebase) to the appropriate, Korean brand name.
+ * @constructor
+ * @param {string} brandKey - The Firebase key for a particular brand.
+ */
 export const brandKeyToName = (brandKey: string): string => (brandKey in C.Common.Brand) ? C.Common.Brand[brandKey].name : brandKey;
+
+/**
+ * Converts a transmission key (used in Firebase) to the appropriate, Korean name for that transmission type.
+ * @constructor
+ * @param {string} transmissionKey - The Firebase key for a particular transmission type.
+ */
 export const transmissionKeyToName = (transmissionKey: string): string => (transmissionKey in C.Common.Transmission) ? C.Common.Transmission[transmissionKey].name : transmissionKey;
 
 const transformNumericString = (original: string): string => {
