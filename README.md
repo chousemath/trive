@@ -1,8 +1,8 @@
 ### The Trive Javascript Library
 
-[![Github](readme/github-logo.png =100x100)](https://github.com/chousemath/trive) [![Documentation](readme/documentation-logo.png =100x100)](trive-library-docs.firebaseapp.com) [![Build Status](https://travis-ci.org/chousemath/trive.svg?branch=master)](https://travis-ci.org/chousemath/trive)
+[![Build Status](https://travis-ci.org/chousemath/trive.svg?branch=master)](https://travis-ci.org/chousemath/trive)
 
-> A collection of useful library functions, because I got tired of writing the same client-side logic across hybrid mobile and web, and multiple versions of both.
+> A collection of useful library functions, because I got tired of writing the same client-side logic across hybrid mobile and web, and multiple versions of both. The repository can be found [here](https://github.com/chousemath/trive), and the documentation website can be found [here](trive-library-docs.firebaseapp.com).
 
 ### Install Project Dependencies
 
