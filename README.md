@@ -37,6 +37,9 @@ $ npm run-script compile
 * [filterServicesMessageSell](#filterservicesmessagesell)
 * [filterServicesMessageService](#filterservicesmessageservice)
 * [isValidCarNumber](#isvalidcarnumber)
+* [mapCsType](#mapcstype)
+* [mapServiceType](#mapservicetype)
+* [reformatDateString](#reformatdatestring)
 * [transformNumber](#transformnumber)
 * [transformPrice](#transformprice)
 * [transmissionKeyToName](#transmissionkeytoname)
@@ -100,6 +103,24 @@ isValidCarNumber('11헐1111')
 // true
 isValidCarNumber('1191111')
 // false
+```
+
+#### **mapCsType**
+
+```javascript
+DOCUMENTATION IN PROGRESS
+```
+
+#### **mapServiceType**
+
+```javascript
+DOCUMENTATION IN PROGRESS
+```
+
+#### **reformatDateString**
+
+```javascript
+DOCUMENTATION IN PROGRESS
 ```
 
 #### **transformNumber**

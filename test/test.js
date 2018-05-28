@@ -256,4 +256,26 @@ M.describe('Trive', function () {
             A.equal(T.reformatDateString('19891211'), '1989.12.11');
         });
     });
+    M.describe('#obfuscatePhone', function () {
+        M.it('should correctly obfuscate a phone number', function () {
+            A.equal(T.obfuscatePhone('01068513003'), '010-****-3003');
+            A.equal(T.obfuscatePhone('010-6851-3003'), '010-****-3003');
+            A.equal(T.obfuscatePhone('123'), '');
+            A.equal(T.obfuscatePhone('+123+'), '');
+        });
+    });
+    M.describe('#mapServiceType', function () {
+        M.it('should correctly map a service type to a korean name', function () {
+            A.equal(T.mapServiceType('xxx'), '');
+            A.equal(T.mapServiceType('publish'), '발송');
+            A.equal(T.mapServiceType('fail'), '실패');
+        });
+    });
+    M.describe('#mapCsType', function () {
+        M.it('should correctly map a customer service type to a korean name', function () {
+            A.equal(T.mapCsType('xxx'), '');
+            A.equal(T.mapCsType('doing'), '처리중');
+            A.equal(T.mapCsType('done'), '완료');
+        });
+    });
 });
