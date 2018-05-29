@@ -295,4 +295,9 @@ M.describe('Trive', function () {
             A.equal(T.brandRows().length, 4);
         });
     });
+    M.describe('#defaultDeviceStatus', function () {
+        M.it('should return the default device status', function () {
+            A.equal(T.defaultDeviceStatus().brake.oil_status, 'optimal');
+        });
+    });
 });

@@ -2,6 +2,57 @@
 exports.__esModule = true;
 var Device;
 (function (Device) {
+    Device.DefaultStatus = {
+        motor: {
+            ops: 'good',
+            oil: 'good',
+            cylinderhead: 'none',
+            cylinderblock: 'none',
+            oil_status: 'optimal',
+            cylinderblock2: 'none',
+            gasket: 'none',
+            pump: 'none',
+            cooler: 'none',
+            water_status: 'good',
+            cmn_rail: 'good'
+        },
+        trans: {
+            at_oil_leak: 'none',
+            at_oil_status: 'optimal',
+            at_ops: 'good',
+            mt_oil_leak: 'none',
+            mt_shift: 'good',
+            mt_oil_status: 'optimal',
+            mt_ops: 'good'
+        },
+        pts: {
+            clutch: 'good',
+            joint: 'good',
+            shaft: 'good'
+        },
+        steering: {
+            oil_leak: 'none',
+            gear: 'good',
+            pump: 'good',
+            tierodend: 'good'
+        },
+        brake: {
+            oil_status: 'optimal',
+            oil_leak: 'none',
+            booster: 'good'
+        },
+        electric: {
+            output: 'good',
+            starting: 'good',
+            wiper: 'good',
+            fan: 'good',
+            radiator: 'good'
+        },
+        misc: {
+            fuel_leak: 'good',
+            window_motor: 'good'
+        }
+    };
     Device.Part = {
         "hood": {
             "file": "cl_2d_1",

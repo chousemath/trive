@@ -4,6 +4,8 @@ const joinBlank = R.join('');
 import * as C from './data/common.js';
 import { Service } from './interfaces/service.js';
 import { Brand } from './interfaces/brand.js';
+import { DeviceStatus } from './interfaces/device-status.js';
+import { Device } from './data/device.js';
 
 /**
  * Service: a general purpose type to represent message cards in the mobile application.
@@ -291,3 +293,9 @@ export const brandRows = (): Array<Array<Brand>> => {
     C.Common.BrandsFourth
   ];
 };
+
+/**
+ * Returns the default device status of an used vehicle.
+ * @constructor 
+ */
+export const defaultDeviceStatus = (): DeviceStatus => Device.DefaultStatus;
