@@ -300,3 +300,10 @@ export const brandRows = (): Array<Array<Brand>> => {
  * @constructor 
  */
 export const defaultDeviceStatus = (): DeviceStatus => Device.DefaultStatus;
+
+/**
+ * Ensures that the input is a numeric value
+ * @constructor
+ * @param {(number|string)} original - The original input value
+ */
+export const ensureNumber = (original: number | string): number => original ? +original || 0 : 0;

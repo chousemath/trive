@@ -52,6 +52,9 @@ $ npm publish
 
 * [assembleDateString](#assembledatestring)
 * [brandKeyToName](#brandkeytoname)
+* [brandRows](#brandrows)
+* [defaultDeviceStatus](#defaultdevicestatus)
+* [ensureNumber](#ensurenumber)
 * [filterServicesBidFailure](#filterservicesbidfailure)
 * [filterServicesBidSuccess](#filterservicesbidsuccess)
 * [filterServicesMessageBuy](#filterservicesmessagebuy)
@@ -84,6 +87,24 @@ assembleDateString('1990', '7', '7')
 // Return Value: string
 brandKeyToName('kia')
 // '기아'
+```
+
+#### **brandRows**
+
+```javascript
+// DOCUMENTATION IN PROGRESS
+```
+
+#### **defaultDeviceStatus**
+
+```javascript
+// DOCUMENTATION IN PROGRESS
+```
+
+#### **ensureNumber**
+
+```javascript
+// DOCUMENTATION IN PROGRESS
 ```
 
 #### **filterServicesBidFailure**

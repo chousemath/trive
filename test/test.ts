@@ -304,4 +304,12 @@ M.describe('Trive', () => {
       A.equal(T.defaultDeviceStatus().brake.oil_status, 'optimal');
     });
   });
+  M.describe('#ensureNumber', () => {
+    M.it('should return a number no matter what the input is', () => {
+      A.equal(T.ensureNumber('123'), 123);
+      A.equal(T.ensureNumber(123), 123);
+      A.equal(T.ensureNumber('Hey baby~'), 0);
+      A.equal(T.ensureNumber(0), 0);
+    });
+  });
 });
