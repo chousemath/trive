@@ -179,6 +179,10 @@ transformPrice(129120)
 // '12만 9,120원'
 transformPrice(99129120)
 // '9,912만 9,120원'
+transformPrice(600000000)
+// '6억원'
+transformPrice(600010000)
+// '6억 1만원'
 transformPrice(699129120)
 // '6억 9,912만 9,120원'
 transformPrice(55699129120)

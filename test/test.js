@@ -112,9 +112,12 @@ M.describe('Trive', function () {
             A.equal(T.transformPrice(0), '0원');
             A.equal(T.transformPrice(990), '990원');
             A.equal(T.transformPrice(1120), '1,120원');
+            A.equal(T.transformPrice(10000), '1만원');
             A.equal(T.transformPrice(19120), '1만 9,120원');
             A.equal(T.transformPrice(129120), '12만 9,120원');
             A.equal(T.transformPrice(99129120), '9,912만 9,120원');
+            A.equal(T.transformPrice(600000000), '6억원');
+            A.equal(T.transformPrice(600010000), '6억 1만원');
             A.equal(T.transformPrice(699129120), '6억 9,912만 9,120원');
             A.equal(T.transformPrice(55699129120), '556억 9,912만 9,120원');
             A.equal(T.transformPrice(255699129120), '2,556억 9,912만 9,120원');

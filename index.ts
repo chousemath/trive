@@ -138,8 +138,9 @@ export const transformPrice = (price: number): string => {
   const hundredMillions: string = hundredMillionsNum ? formatPrice(hundredMillionsNum, '억') : '';
   const tenThousandsNum: number = Math.floor((price % 100000000) / 10000);
   const tenThousands: string = tenThousandsNum ? formatPrice(tenThousandsNum, '만') : '';
-  const ones: string = formatPrice(Math.floor((price % 100000000) % 10000), '원');
-  return hundredMillions + tenThousands + ones;
+  const onesNum: number = Math.floor((price % 100000000) % 10000);
+  const ones: string = onesNum || (hundredMillionsNum === 0 && tenThousandsNum === 0) ? formatPrice(onesNum, '원') : '';
+  return (hundredMillions + tenThousands + ones).trim() + (((hundredMillionsNum || tenThousandsNum) && (onesNum === 0)) ? '원' : '');
 }
 
 const statusesServiceMessageBuy: Array<string> = ['noti-max-bidding', 'noti-success', 'noti-failure', 'noti-warn1', 'noti-warn2', 'winning', 'successful', 'failure', 'unselected'];
