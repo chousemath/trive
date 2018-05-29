@@ -291,4 +291,9 @@ M.describe('Trive', () => {
       A.equal(T.handleMiscPipe('19891211', 'date'), '1989.12.11');
     });
   });
+  M.describe('#brandRows', () => {
+    M.it('should return all brands for the brand picker', () => {
+      A.equal(T.brandRows().length, 4);
+    });
+  });
 });
