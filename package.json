@@ -1,6 +1,6 @@
 {
   "name": "trivefunc",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "A library of pure functions for The Trive mobile application.",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,6 @@
     "uglify-js": "^3.3.27"
   },
   "dependencies": {
-    "rambda": "^1.1.2",
     "ramda": "^0.25.0"
   }
 }
