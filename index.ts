@@ -1,6 +1,3 @@
-import * as R from 'ramda';
-const mapIndexed = R.addIndex(R.map);
-const joinBlank = R.join('');
 import * as C from './data/common.js';
 import { Service } from './interfaces/service.js';
 import { Brand } from './interfaces/brand.js';
@@ -102,12 +99,12 @@ export const transmissionKeyToName = (transmissionKey: string): string => (trans
 const transformNumericString = (original: string): string => {
   if (!original) return '';
   const limit: number = original.length - 1;
-  const reversedWithCommas: Array<string> = mapIndexed((val, idx) => {
+  const reversedWithCommas: Array<string> = original.split('').reverse().map((val, idx, _) => {
     const cond1: boolean = (idx + 1) % 3 === 0;
     const cond2: boolean = idx !== limit;
     return (cond1 && cond2) ? ',' + val : val;
-  }, R.reverse(original));
-  return joinBlank(R.reverse(reversedWithCommas));
+  });
+  return reversedWithCommas.reverse().join('');
 };
 
 /**
@@ -143,11 +140,12 @@ export const transformPrice = (price: number): string => {
   return (hundredMillions + tenThousands + ones).trim() + (((hundredMillionsNum || tenThousandsNum) && (onesNum === 0)) ? '원' : '');
 }
 
+const isIn = (myArray: Array<any>, targetValue: any): any => myArray.indexOf(targetValue) >= 0;
 const statusesServiceMessageBuy: Array<string> = ['noti-max-bidding', 'noti-success', 'noti-failure', 'noti-warn1', 'noti-warn2', 'winning', 'successful', 'failure', 'unselected'];
 const filterServiceMessageBuy = (service: Service): boolean => {
   if (!service) return false;
   const correctType: boolean = 'type' in service && service.type === 'used';
-  const correctStatus: boolean = 'status' in service && R.find((x) => x === service.status, statusesServiceMessageBuy);
+  const correctStatus: boolean = 'status' in service && isIn(statusesServiceMessageBuy, service.status);
   return correctType && correctStatus
 };
 
@@ -156,7 +154,7 @@ const filterServiceMessageBuy = (service: Service): boolean => {
  * @constructor
  * @param {Array.<Service>} services - List of service messages.
  */
-export const filterServicesMessageBuy = (services: Array<Service>): Array<Service> => R.filter(filterServiceMessageBuy, services);
+export const filterServicesMessageBuy = (services: Array<Service>): Array<Service> => services.filter(filterServiceMessageBuy);
 
 const filterServiceBidSuccess = (service: Service): boolean => {
   if (!service) return false;
@@ -170,13 +168,13 @@ const filterServiceBidSuccess = (service: Service): boolean => {
  * @constructor
  * @param {Array.<Service>} services - List of service messages.
  */
-export const filterServicesBidSuccess = (services: Array<Service>): Array<Service> => R.filter(filterServiceBidSuccess, services);
+export const filterServicesBidSuccess = (services: Array<Service>): Array<Service> => services.filter(filterServiceBidSuccess);
 
 const statusesServiceBidFailure: Array<string> = ['failure-card', 'unselected-card'];
 const filterServiceBidFailure = (service: Service): boolean => {
   if (!service) return false;
   const correctType: boolean = 'type' in service && service.type === 'used';
-  const correctStatus: boolean = 'status' in service && R.find((x) => x === service.status, statusesServiceBidFailure);
+  const correctStatus: boolean = 'status' in service && isIn(statusesServiceBidFailure, service.status);
   return correctType && correctStatus && 'data' in service;
 };
 
@@ -185,7 +183,7 @@ const filterServiceBidFailure = (service: Service): boolean => {
  * @constructor
  * @param {Array.<Service>} services - List of service messages.
  */
-export const filterServicesBidFailure = (services: Array<Service>): Array<Service> => R.filter(filterServiceBidFailure, services);
+export const filterServicesBidFailure = (services: Array<Service>): Array<Service> => services.filter(filterServiceBidFailure);
 
 const statusesServiceMessageSell: Array<string> = ['review-accept', 'review-reject', 'booking-agent'];
 const filterServiceMessageSell = (service: Service): boolean => {
@@ -193,7 +191,7 @@ const filterServiceMessageSell = (service: Service): boolean => {
   const correctType1: boolean = 'type' in service && service.type === 'inquiry';
   const correctType2: boolean = 'type' in service && service.type === 'used';
   const hasDataTag: boolean = 'data' in service && 'tag' in service.data;
-  const correctStatus: boolean = 'status' in service && R.find((x) => x === service.status, statusesServiceMessageSell);
+  const correctStatus: boolean = 'status' in service && isIn(statusesServiceMessageSell, service.status);
   return (correctType1 && hasDataTag) || (correctType2 && correctStatus);
 };
 
@@ -202,7 +200,7 @@ const filterServiceMessageSell = (service: Service): boolean => {
  * @constructor
  * @param {Array.<Service>} services - List of service messages.
  */
-export const filterServicesMessageSell = (services: Array<Service>): Array<Service> => R.filter(filterServiceMessageSell, services);
+export const filterServicesMessageSell = (services: Array<Service>): Array<Service> => services.filter(filterServiceMessageSell);
 
 const filterServiceMessageService = (service: Service): boolean => {
   if (!service) return false;
@@ -217,7 +215,7 @@ const filterServiceMessageService = (service: Service): boolean => {
  * @constructor
  * @param {Array.<Service>} services - List of service messages.
  */
-export const filterServicesMessageService = (services: Array<Service>): Array<Service> => R.filter(filterServiceMessageService, services);
+export const filterServicesMessageService = (services: Array<Service>): Array<Service> => services.filter(filterServiceMessageService);
 
 /**
  * Format a date string into a dot separated version.
@@ -307,3 +305,26 @@ export const defaultDeviceStatus = (): DeviceStatus => Device.DefaultStatus;
  * @param {(number|string)} original - The original input value
  */
 export const ensureNumber = (original: number | string): number => original ? +original || 0 : 0;
+
+const distanceMultiplier = { K: 1.609344, N: 0.8684 };
+
+/**
+ * Calculates the distance between two longitude/latitude points
+ * @constructor
+ * @param {number} latitude1 - Latitude of point A
+ * @param {number} longitude1 - Longitude of point A
+ * @param {number} latitude2 - Latitude of point B
+ * @param {number} longitude2 - Longitude of point B
+ * @param {string} unit - Desired unit of return value
+ */
+export const calculateDistance = (latitude1: number, longitude1: number, latitude2: number, longitude2: number, unit: string): number => {
+  const coord = {
+    lat1: Math.PI * latitude1 / 180.0,
+    lat2: Math.PI * latitude2 / 180.0,
+    theta: Math.PI * (longitude1 - longitude2) / 180.0
+  };
+  const distance: number = Math.sin(coord.lat1) * Math.sin(coord.lat2) + Math.cos(coord.lat1) * Math.cos(coord.lat2) * Math.cos(coord.theta);
+  const distance2: number = Math.acos(distance) * (180.0 / Math.PI) * 60.0 * 1.1515;
+  const multiplier: number = unit in distanceMultiplier ? distanceMultiplier[unit] : 1.0;
+  return distance2 * multiplier;
+}
