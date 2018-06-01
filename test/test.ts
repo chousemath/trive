@@ -322,4 +322,14 @@ M.describe('Trive', () => {
       A.equal(Math.round(100 * T.calculateDistance(33.1234, -97.1234, 28.4321, -99.4321, "")) / 100, 351.87);
     });
   });
+  M.describe('#colorKeyToHex', () => {
+    M.it('should correctly map a color key to the corresponding hex colors', () => {
+      const color1 = T.colorKeyToHex('others');
+      const color2 = T.colorKeyToHex('Not A Real Color');
+      A.equal(color1.backgroundColor, '#fff');
+      A.equal(color1.border, 'silver');
+      A.equal(color2.backgroundColor, '');
+      A.equal(color2.border, '');
+    });
+  });
 });

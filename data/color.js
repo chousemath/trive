@@ -75,4 +75,58 @@ var Color;
             name: '기타'
         }
     ];
+    Color.Hex = {
+        others: {
+            backgroundColor: '#fff',
+            border: 'silver'
+        },
+        red: {
+            backgroundColor: '#d0021b',
+            border: '#d0021b'
+        },
+        black: {
+            backgroundColor: '#242b34',
+            border: '#242b34'
+        },
+        white: {
+            backgroundColor: '#fff',
+            border: '#000'
+        },
+        blue: {
+            backgroundColor: '#0090d3',
+            border: '#0090d3'
+        },
+        gray: {
+            backgroundColor: '#7d8186',
+            border: '#7d8186'
+        },
+        silver: {
+            backgroundColor: '#cacbcd',
+            border: '#cacbcd'
+        },
+        darkblue: {
+            backgroundColor: 'darkblue',
+            border: 'darkblue'
+        },
+        ivory: {
+            backgroundColor: '#eae3cb',
+            border: '#eae3cb'
+        },
+        brown: {
+            backgroundColor: '#6e5f55',
+            border: '#6e5f55'
+        },
+        yellow: {
+            backgroundColor: '#f5c132',
+            border: '#f5c132'
+        },
+        green: {
+            backgroundColor: '#70bf47',
+            border: '#70bf47'
+        },
+        orange: {
+            backgroundColor: '#ff7b39',
+            border: '#ff7b39'
+        }
+    };
 })(Color = exports.Color || (exports.Color = {}));

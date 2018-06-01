@@ -3,6 +3,7 @@ import { Service } from './interfaces/service.js';
 import { Brand } from './interfaces/brand.js';
 import { DeviceStatus } from './interfaces/device-status.js';
 import { Device } from './data/device.js';
+import { Color } from './data/color.js';
 
 /**
  * Service: a general purpose type to represent message cards in the mobile application.
@@ -328,3 +329,13 @@ export const calculateDistance = (latitude1: number, longitude1: number, latitud
   const multiplier: number = unit in distanceMultiplier ? distanceMultiplier[unit] : 1.0;
   return distance2 * multiplier;
 }
+
+/**
+ * Maps a color key to the associated border and background hex colors
+ * @constructor
+ * @param {string} colorKey - Key representing a color
+ */
+export const colorKeyToHex = (colorKey: string): { backgroundColor: string, border: string } => {
+  if (colorKey in Color.Hex) return Color.Hex[colorKey];
+  return { backgroundColor: '', border: '' };
+};
