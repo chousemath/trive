@@ -4,6 +4,7 @@ import { Brand } from './interfaces/brand.js';
 import { DeviceStatus } from './interfaces/device-status.js';
 import { Device } from './data/device.js';
 import { Color } from './data/color.js';
+import { Bid } from './interfaces/bid.js';
 
 /**
  * Service: a general purpose type to represent message cards in the mobile application.
@@ -338,4 +339,30 @@ export const calculateDistance = (latitude1: number, longitude1: number, latitud
 export const colorKeyToHex = (colorKey: string): { backgroundColor: string, border: string } => {
   if (colorKey in Color.Hex) return Color.Hex[colorKey];
   return { backgroundColor: '', border: '' };
+};
+
+const initialMaxBid: Bid = { key: '', amount: -1, updatedAt: 0 };
+const initialMinBid: Bid = { key: '', amount: 9007199254740991, updatedAt: 0 };
+/**
+ * Extracts the maximum bid from a collection of bids
+ * @constructor
+ * @param {} bidObject - A collection of bids
+ */
+export const getMaxBid = (bidsObject: any): Bid => {
+  const bids: Array<Bid> = Object.keys(bidsObject).map((key: string) => bidsObject[key]);
+  return bids.reduce((acc: Bid, cur: Bid): Bid => {
+    return (acc.amount > cur.amount) ? acc : cur;
+  }, initialMaxBid);
+};
+
+/**
+ * Extracts the minimum bid from a collection of bids
+ * @constructor
+ * @param {} bidObject - A collection of bids
+ */
+export const getMinBid = (bidsObject: any): Bid => {
+  const bids: Array<Bid> = Object.keys(bidsObject).map((key: string) => bidsObject[key]);
+  return bids.reduce((acc: Bid, cur: Bid): Bid => {
+    return (acc.amount < cur.amount) ? acc : cur;
+  }, initialMinBid);
 };

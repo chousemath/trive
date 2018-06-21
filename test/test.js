@@ -331,4 +331,80 @@ M.describe('Trive', function () {
             A.equal(color2.border, '');
         });
     });
+    M.describe('#getMaxBid', function () {
+        M.it('should correctly extract the maximum bid for a collection of bids', function () {
+            var testCase1 = {
+                'kd2': {
+                    'amount': 987,
+                    'key': 'kd2',
+                    'name': '김중고',
+                    'time': 1528975141295,
+                    'workplace': 'a'
+                },
+                'used1': {
+                    'amount': 654,
+                    'key': 'used1',
+                    'name': 'Used1',
+                    'time': 1528975168263,
+                    'workplace': 'b'
+                },
+                'steve': {
+                    'amount': 23,
+                    'key': 'steve',
+                    'name': 'STEVE',
+                    'time': 1528975168263,
+                    'workplace': 'c'
+                },
+                'bob': {
+                    'amount': 15,
+                    'key': 'bob',
+                    'name': 'BOB',
+                    'time': 1528975168263,
+                    'workplace': 'd'
+                }
+            };
+            var maxBid = T.getMaxBid(testCase1);
+            A.equal(maxBid.key, 'kd2');
+            A.equal(maxBid.amount, 987);
+            A.equal(maxBid.workplace, 'a');
+        });
+    });
+    M.describe('#getMinBid', function () {
+        M.it('should correctly extract the minimum bid for a collection of bids', function () {
+            var testCase1 = {
+                'kd2': {
+                    'amount': 987,
+                    'key': 'kd2',
+                    'name': '김중고',
+                    'time': 1528975141295,
+                    'workplace': 'a'
+                },
+                'used1': {
+                    'amount': 654,
+                    'key': 'used1',
+                    'name': 'Used1',
+                    'time': 1528975168263,
+                    'workplace': 'b'
+                },
+                'steve': {
+                    'amount': 23,
+                    'key': 'steve',
+                    'name': 'STEVE',
+                    'time': 1528975168263,
+                    'workplace': 'c'
+                },
+                'bob': {
+                    'amount': 15,
+                    'key': 'bob',
+                    'name': 'BOB',
+                    'time': 1528975168263,
+                    'workplace': 'd'
+                }
+            };
+            var minBid = T.getMinBid(testCase1);
+            A.equal(minBid.key, 'bob');
+            A.equal(minBid.amount, 15);
+            A.equal(minBid.workplace, 'd');
+        });
+    });
 });

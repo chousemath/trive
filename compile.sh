@@ -9,6 +9,7 @@ tsc data/device.ts
 tsc data/generation.ts
 
 tsc interfaces/address.ts
+tsc interfaces/bid.ts
 tsc interfaces/brand.ts
 tsc interfaces/category.ts
 tsc interfaces/email-password-credentials.ts
