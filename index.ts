@@ -393,3 +393,16 @@ export const getBidInfo = (bidsObject: any): { maxBid: Bid, minBid: Bid, bidCoun
     bidCount: bids.length
   };
 };
+
+/**
+ * Assembles a timestamp payload for each sell my car event
+ * @constructor
+ * @param {} originalTimestampPayload - A collection of timestamp objects
+ */
+export const timestampPayload = (originalTimestampPayload: any): any => {
+  const payload = {};
+  Object.assign(payload, originalTimestampPayload);
+  const timestamp: number = new Date().getTime();
+  payload[`xxx${timestamp}`] = { timestamp: timestamp };
+  return payload;
+};

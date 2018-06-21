@@ -373,3 +373,15 @@ exports.getBidInfo = function (bidsObject) {
         bidCount: bids.length
     };
 };
+/**
+ * Assembles a timestamp payload for each sell my car event
+ * @constructor
+ * @param {} originalTimestampPayload - A collection of timestamp objects
+ */
+exports.timestampPayload = function (originalTimestampPayload) {
+    var payload = {};
+    Object.assign(payload, originalTimestampPayload);
+    var timestamp = new Date().getTime();
+    payload["xxx" + timestamp] = { timestamp: timestamp };
+    return payload;
+};

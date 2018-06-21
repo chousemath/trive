@@ -489,4 +489,19 @@ M.describe('Trive', () => {
       A.equal(bidInfo.bidCount, 4);
     });
   });
+
+  M.describe('#timestampPayload', () => {
+    M.it('should correctly assemble a timestamp object', () => {
+      const originalTimestampPayload = {
+        'xxx1528973690928': { 'timestamp': 1528973690928 },
+        'xxx1528975209524': { 'timestamp': 1528975209524 }
+      }
+      const timestampObj = T.timestampPayload(originalTimestampPayload);
+      const keys: Array<string> = Object.keys(timestampObj);
+      A.equal(keys.length, 3);
+      const timestamps: Array<any> = Object.keys(timestampObj).map((key: string) => timestampObj[key]);
+      A.equal(timestamps.map(ts => ts.timestamp > 100).reduce((acc, cur) => acc && cur, true), true);
+      A.equal(keys.map((k: string) => k.slice(0, 3) === 'xxx').reduce((acc, cur) => acc && cur, true));
+    });
+  });
 });

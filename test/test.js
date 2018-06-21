@@ -484,4 +484,16 @@ M.describe('Trive', function () {
             A.equal(bidInfo.bidCount, 4);
         });
     });
+    M.describe('#timestampPayload', function () {
+        M.it('should correctly assemble a timestamp object', function () {
+            var originalTimestampPayload = {
+                'xxx1528973690928': { 'timestamp': 1528973690928 },
+                'xxx1528975209524': { 'timestamp': 1528975209524 }
+            };
+            var timestampObj = T.timestampPayload(originalTimestampPayload);
+            A.equal(Object.keys(timestampObj).length, 3);
+            var timestamps = Object.keys(timestampObj).map(function (key) { return timestampObj[key]; });
+            A.equal(timestamps.map(function (ts) { return ts.timestamp > 100; }).reduce(function (acc, cur) { return acc && cur; }, true), true);
+        });
+    });
 });
