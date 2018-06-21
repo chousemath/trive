@@ -348,3 +348,28 @@ exports.getMinBid = function (bidsObject) {
         return (acc.amount < cur.amount) ? acc : cur;
     }, initialMinBid);
 };
+/**
+ * Extracts the number of bids from a collection of bids
+ * @constructor
+ * @param {} bidObject - A collection of bids
+ */
+exports.getBidCount = function (bidsObject) {
+    return Object.keys(bidsObject).length;
+};
+/**
+ * Extracts the number of bids, max bid, and min bid from a collection of bids
+ * @constructor
+ * @param {} bidObject - A collection of bids
+ */
+exports.getBidInfo = function (bidsObject) {
+    var bids = Object.keys(bidsObject).map(function (key) { return bidsObject[key]; });
+    return {
+        maxBid: bids.reduce(function (acc, cur) {
+            return (acc.amount > cur.amount) ? acc : cur;
+        }, initialMaxBid),
+        minBid: bids.reduce(function (acc, cur) {
+            return (acc.amount < cur.amount) ? acc : cur;
+        }, initialMinBid),
+        bidCount: bids.length
+    };
+};

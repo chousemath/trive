@@ -366,3 +366,30 @@ export const getMinBid = (bidsObject: any): Bid => {
     return (acc.amount < cur.amount) ? acc : cur;
   }, initialMinBid);
 };
+
+/**
+ * Extracts the number of bids from a collection of bids
+ * @constructor
+ * @param {} bidObject - A collection of bids
+ */
+export const getBidCount = (bidsObject: any): number => {
+  return Object.keys(bidsObject).length;
+};
+
+/**
+ * Extracts the number of bids, max bid, and min bid from a collection of bids
+ * @constructor
+ * @param {} bidObject - A collection of bids
+ */
+export const getBidInfo = (bidsObject: any): { maxBid: Bid, minBid: Bid, bidCount: number } => {
+  const bids: Array<Bid> = Object.keys(bidsObject).map((key: string) => bidsObject[key]);
+  return {
+    maxBid: bids.reduce((acc: Bid, cur: Bid): Bid => {
+      return (acc.amount > cur.amount) ? acc : cur;
+    }, initialMaxBid),
+    minBid: bids.reduce((acc: Bid, cur: Bid): Bid => {
+      return (acc.amount < cur.amount) ? acc : cur;
+    }, initialMinBid),
+    bidCount: bids.length
+  };
+};
