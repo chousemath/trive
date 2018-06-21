@@ -363,6 +363,13 @@ M.describe('Trive', () => {
           'name': 'BOB',
           'time': 1528975168263,
           'workplace': 'd'
+        },
+        'kim': {
+          'amount': 3,
+          'key': 'kim',
+          'name': 'KIM',
+          'time': 1528975168263,
+          'workplace': 'e'
         }
       };
       const maxBid: Bid = T.getMaxBid(testCase1);
@@ -402,12 +409,19 @@ M.describe('Trive', () => {
           'name': 'BOB',
           'time': 1528975168263,
           'workplace': 'd'
+        },
+        'kim': {
+          'amount': 3,
+          'key': 'kim',
+          'name': 'KIM',
+          'time': 1528975168263,
+          'workplace': 'e'
         }
       };
       const minBid: Bid = T.getMinBid(testCase1);
-      A.equal(minBid.key, 'bob');
-      A.equal(minBid.amount, 15);
-      A.equal(minBid.workplace, 'd');
+      A.equal(minBid.key, 'kim');
+      A.equal(minBid.amount, 3);
+      A.equal(minBid.workplace, 'e');
     });
   });
 
@@ -448,7 +462,7 @@ M.describe('Trive', () => {
   });
 
   M.describe('#getBidInfo', () => {
-    M.it('should correctly extract the minimum bid for a collection of bids', () => {
+    M.it('should correctly assemble auction info from a collection of bids', () => {
       const testCase1 = {
         'kd2': {
           'amount': 987,
@@ -477,16 +491,48 @@ M.describe('Trive', () => {
           'name': 'BOB',
           'time': 1528975168263,
           'workplace': 'd'
+        },
+        'kim': {
+          'amount': 3,
+          'key': 'kim',
+          'name': 'KIM',
+          'time': 1528975168263,
+          'workplace': 'e'
+        }
+      };
+      const testCase2 = {
+        'kim': {
+          'amount': 3,
+          'key': 'kim',
+          'name': 'KIM',
+          'time': 1528975168263,
+          'workplace': 'e'
+        },
+        'bob': {
+          'amount': 15,
+          'key': 'bob',
+          'name': 'BOB',
+          'time': 1528975168263,
+          'workplace': 'd'
         }
       };
       const bidInfo = T.getBidInfo(testCase1);
+      const bidInfo2 = T.getBidInfo(testCase2);
       A.equal(bidInfo.maxBid.key, 'kd2');
       A.equal(bidInfo.maxBid.amount, 987);
       A.equal(bidInfo.maxBid.workplace, 'a');
-      A.equal(bidInfo.minBid.key, 'bob');
-      A.equal(bidInfo.minBid.amount, 15);
-      A.equal(bidInfo.minBid.workplace, 'd');
-      A.equal(bidInfo.bidCount, 4);
+      A.equal(bidInfo.minBid.key, 'kim');
+      A.equal(bidInfo.minBid.amount, 3);
+      A.equal(bidInfo.minBid.workplace, 'e');
+      A.equal(bidInfo.bidCount, 5);
+
+      A.equal(bidInfo2.maxBid.key, 'bob');
+      A.equal(bidInfo2.maxBid.amount, 15);
+      A.equal(bidInfo2.maxBid.workplace, 'd');
+      A.equal(bidInfo2.minBid.key, 'kim');
+      A.equal(bidInfo2.minBid.amount, 3);
+      A.equal(bidInfo2.minBid.workplace, 'e');
+      A.equal(bidInfo2.bidCount, 2);
     });
   });
 
