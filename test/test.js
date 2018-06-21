@@ -491,9 +491,11 @@ M.describe('Trive', function () {
                 'xxx1528975209524': { 'timestamp': 1528975209524 }
             };
             var timestampObj = T.timestampPayload(originalTimestampPayload);
-            A.equal(Object.keys(timestampObj).length, 3);
+            var keys = Object.keys(timestampObj);
+            A.equal(keys.length, 3);
             var timestamps = Object.keys(timestampObj).map(function (key) { return timestampObj[key]; });
-            A.equal(timestamps.map(function (ts) { return ts.timestamp > 100; }).reduce(function (acc, cur) { return acc && cur; }, true), true);
+            timestamps.forEach(function (ts) { return A.equal(ts.timestamp > 100, true); });
+            keys.forEach(function (key) { return A.equal(key.slice(0, 3), 'xxx'); });
         });
     });
 });

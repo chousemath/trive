@@ -500,8 +500,8 @@ M.describe('Trive', () => {
       const keys: Array<string> = Object.keys(timestampObj);
       A.equal(keys.length, 3);
       const timestamps: Array<any> = Object.keys(timestampObj).map((key: string) => timestampObj[key]);
-      A.equal(timestamps.map(ts => ts.timestamp > 100).reduce((acc, cur) => acc && cur, true), true);
-      A.equal(keys.map((k: string) => k.slice(0, 3) === 'xxx').reduce((acc, cur) => acc && cur, true));
+      timestamps.forEach((ts: any) => A.equal(ts.timestamp > 100, true));
+      keys.forEach((key: string) => A.equal(key.slice(0, 3), 'xxx'));
     });
   });
 });
